@@ -4,9 +4,16 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
 
 
 public class OverlaysWhiteboardFragment extends Fragment {
@@ -55,8 +62,49 @@ public class OverlaysWhiteboardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Get the root view
+        View rootView = inflater.inflate(R.layout.fragment_overlays_whiteboard, container, false);
+
+        LinearLayout cols = (LinearLayout) rootView.findViewById(R.id.cols);
+
+        // Initialise test time zones
+        String[] zones = {"Australia/Sydney","Europe/Zurich","Asia/Kolkata"};
+        //String[] zones = {"Australia/Sydney"};
+
+        for(String zone : zones) {
+
+            // Initialise the dataset for the current time zone
+            //mDataSet = new ArrayList<OffsetDateTime>();
+
+            LinearLayout col = new LinearLayout(getActivity());
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(100, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(50,0,0,0);
+            col.setLayoutParams(params);
+            col.setBackgroundResource(R.drawable.border);
+            col.setOrientation(LinearLayout.VERTICAL);
+            cols.addView(col);
+
+            // Get the current time
+            OffsetDateTime timeStamp = OffsetDateTime.now(ZoneId.of(zone));
+            OffsetDateTime timeStampMinus24 = timeStamp.minusDays(1);
+            OffsetDateTime timeStampPlus24 = timeStamp.plusDays(1);
+            OffsetDateTime timeIndex = timeStampMinus24;
+
+            while(timeIndex.isBefore(timeStampPlus24)) {
+                //mDataSet.add(timeIndex);
+                TextView textView = new TextView(getActivity());
+                textView.setText(String.valueOf(timeIndex.getHour()));
+                textView.setTextSize(12);
+                textView.setGravity(Gravity.CENTER);
+                textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                col.addView(textView);
+                timeIndex = timeIndex.plusHours(1);
+            }
+
+        }
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_overlays_whiteboard, container, false);
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
