@@ -37,10 +37,10 @@ public class MainActivity extends AppCompatActivity
 					mTextMessage.setText(R.string.title_notifications);
 					return true;
 				case R.id.navigation_overlays:
-					// TODO delete the below test text
-					//mTextMessage.setText(R.string.title_overlays);
+					mTextMessage.setText("");
 
 					// Hide the currently displayed fragment and inflate the overlays fragment
+					setTitle(R.string.title_overlays);
 					Fragment overlaysFragment = new OverlaysWhiteboardFragment();
 					fragmentTransaction.replace(R.id.container, overlaysFragment);
                     fragmentTransaction.addToBackStack(null);
