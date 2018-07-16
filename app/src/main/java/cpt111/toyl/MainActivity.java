@@ -1,8 +1,12 @@
 package cpt111.toyl;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -18,6 +22,10 @@ public class MainActivity extends AppCompatActivity
 		@Override
 		public boolean onNavigationItemSelected(@NonNull MenuItem item)
 		{
+			// Initialise the fragment manager for displaying the different sections when a navigation option is chosen
+			FragmentManager fragmentManager = getSupportFragmentManager();
+			FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
 			switch (item.getItemId()) {
 				case R.id.navigation_home:
 					mTextMessage.setText(R.string.title_home);
@@ -29,7 +37,14 @@ public class MainActivity extends AppCompatActivity
 					mTextMessage.setText(R.string.title_notifications);
 					return true;
 				case R.id.navigation_overlays:
-					mTextMessage.setText(R.string.title_overlays);
+					// TODO delete the below test text
+					//mTextMessage.setText(R.string.title_overlays);
+
+					// Hide the currently displayed fragment and inflate the overlays fragment
+					Fragment overlaysFragment = new OverlaysWhiteboardFragment();
+					fragmentTransaction.replace(R.id.container, overlaysFragment);
+                    fragmentTransaction.addToBackStack(null);
+					fragmentTransaction.commit();
 					return true;
 			}
 			return false;
@@ -37,8 +52,7 @@ public class MainActivity extends AppCompatActivity
 	};
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
