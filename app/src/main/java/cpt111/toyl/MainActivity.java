@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity
 				case R.id.navigation_notifications:
 					mTextMessage.setText(R.string.title_notifications);
 					return true;
+				case R.id.navigation_overlays:
+					mTextMessage.setText(R.string.title_overlays);
+					return true;
 			}
 			return false;
 		}
