@@ -27,14 +27,17 @@ public class MainActivity extends AppCompatActivity
 			FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
 			switch (item.getItemId()) {
-				case R.id.navigation_home:
-					mTextMessage.setText(R.string.title_home);
+				case R.id.navigation_scheduler:
+					mTextMessage.setText(R.string.title_scheduler);
 					return true;
-				case R.id.navigation_dashboard:
-					mTextMessage.setText(R.string.title_dashboard);
+				case R.id.navigation_statistics:
+					mTextMessage.setText(R.string.title_statistics);
 					return true;
-				case R.id.navigation_notifications:
-					mTextMessage.setText(R.string.title_notifications);
+				case R.id.navigation_timer:
+					mTextMessage.setText(R.string.title_timer);
+					return true;
+				case R.id.navigation_tasks:
+					mTextMessage.setText(R.string.title_tasks);
 					return true;
 				case R.id.navigation_overlays:
 					mTextMessage.setText("");
