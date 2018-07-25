@@ -1,6 +1,5 @@
 package cpt111.toyl;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -9,16 +8,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
 {
 
-	private TextView mTextMessage;
-
 	private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener()
 	{
-
 		@Override
 		public boolean onNavigationItemSelected(@NonNull MenuItem item)
 		{
@@ -26,31 +21,41 @@ public class MainActivity extends AppCompatActivity
 			FragmentManager fragmentManager = getSupportFragmentManager();
 			FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-			switch (item.getItemId()) {
-				case R.id.navigation_scheduler:
-					mTextMessage.setText(R.string.title_scheduler);
-					return true;
-				case R.id.navigation_statistics:
-					mTextMessage.setText(R.string.title_statistics);
-					return true;
-				case R.id.navigation_timer:
-					mTextMessage.setText(R.string.title_timer);
-					return true;
-				case R.id.navigation_tasks:
-					mTextMessage.setText(R.string.title_tasks);
-					return true;
-				case R.id.navigation_overlays:
-					mTextMessage.setText("");
+			// TODO: To be changed to Tasks fragment
+			Fragment selectedFragment = new EmptyTestFragment();
 
-					// Hide the currently displayed fragment and inflate the overlays fragment
-					setTitle(R.string.title_overlays);
-					Fragment overlaysFragment = new OverlaysWhiteboardFragment();
-					fragmentTransaction.replace(R.id.container, overlaysFragment);
-                    fragmentTransaction.addToBackStack(null);
-					fragmentTransaction.commit();
-					return true;
+			switch (item.getItemId()) {
+
+                case R.id.navigation_timer:
+                    setTitle(R.string.title_timer);
+                    selectedFragment = new TimerListFragment();
+                    break;
+
+                case R.id.navigation_overlays:
+                    setTitle(R.string.title_overlays);
+                    selectedFragment = new OverlaysWhiteboardFragment();
+                    break;
+
+                case R.id.navigation_tasks:
+                    setTitle(R.string.title_tasks);
+                    selectedFragment = new EmptyTestFragment();
+                    break;
+
+				case R.id.navigation_scheduler:
+                    setTitle(R.string.title_scheduler);
+                    selectedFragment = new EmptyTestFragment();
+                    break;
+
+				case R.id.navigation_statistics:
+                    setTitle(R.string.title_statistics);
+                    selectedFragment = new EmptyTestFragment();
+                    break;
 			}
-			return false;
+
+            fragmentTransaction.addToBackStack(null);
+			fragmentTransaction.replace(R.id.container, selectedFragment).commit();
+
+			return true;
 		}
 	};
 
@@ -59,9 +64,12 @@ public class MainActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		mTextMessage = (TextView) findViewById(R.id.message);
-		BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-		navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+		BottomNavigationView bottomNavigationView;
+		bottomNavigationView = findViewById(R.id.navigation);
+		// set default selected section to tasks
+		bottomNavigationView.setSelectedItemId(R.id.navigation_tasks);
+		bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
 	}
 
 }
