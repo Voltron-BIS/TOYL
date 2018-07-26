@@ -1,5 +1,6 @@
 package cpt111.toyl;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -64,6 +65,9 @@ public class MainActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		getWindow().getDecorView().setBackgroundColor(Color.WHITE);
+
+
 		BottomNavigationView bottomNavigationView;
 		bottomNavigationView = findViewById(R.id.navigation);
 		// set default selected section to tasks
@@ -71,5 +75,4 @@ public class MainActivity extends AppCompatActivity
 		bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 	}
-
 }

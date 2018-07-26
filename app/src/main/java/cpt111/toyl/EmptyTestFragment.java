@@ -17,6 +17,12 @@ public class EmptyTestFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_timer_list, container, false);
+        return inflater.inflate(R.layout.fragment_empty_test, container, false);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        //mListener = null;
     }
 }
