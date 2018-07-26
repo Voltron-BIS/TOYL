@@ -22,7 +22,7 @@ public class TimerListRecyclerViewAdapter extends RecyclerView.Adapter<TimerList
     // log for debugging
     private static final String TAG = "RecyclerViewAdapter";
 
-    // test data not using dummy
+    // temp fake data
     private ArrayList<String> mTimerNames = new ArrayList<>();
     private ArrayList<String> mTimerLengths = new ArrayList<>();
     private final OnListFragmentInteractionListener mListener;
@@ -32,14 +32,6 @@ public class TimerListRecyclerViewAdapter extends RecyclerView.Adapter<TimerList
         this.mTimerLengths = mTimerLengths;
         this.mListener = listener;
     }
-//
-//    private final List<DummyItem> mValues;
-//    private final OnListFragmentInteractionListener mListener;
-//
-//    public TimerListRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
-//        mValues = items;
-//        mListener = listener;
-//    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -62,35 +54,17 @@ public class TimerListRecyclerViewAdapter extends RecyclerView.Adapter<TimerList
 
 
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                //TODO: Testing with existing fragment but need new one... if it works
+
+                // Opening new fragment (Timer view)
                 Fragment myFragment = new TimerViewFragment();
                 Bundle bundle = new Bundle();
-
                 bundle.putString("Name", mTimerNames.get(position));
-
                 myFragment.setArguments(bundle);
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.container, myFragment).addToBackStack(null).commit();
-
-                // what else happens when something is clicked
             }
         });
 
 
-
-//        holder.mItem = mTimerNames.get(position);
-//        holder.mIdView.setText(mValues.get(position).id);
-//        holder.mContentView.setText(mValues.get(position).content);
-//
-//        holder.mView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (null != mListener) {
-//                    // Notify the active callbacks interface (the activity, if the
-//                    // fragment is attached to one) that an item has been selected.
-//                    mListener.onListFragmentInteraction(holder.mItem);
-//                }
-//            }
-//        });
     }
 
     @Override
@@ -99,7 +73,7 @@ public class TimerListRecyclerViewAdapter extends RecyclerView.Adapter<TimerList
     }
 
 
-    // where we set up the view for the "cell"
+    // where we set up the view for the "list"
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         View mView;
@@ -107,24 +81,12 @@ public class TimerListRecyclerViewAdapter extends RecyclerView.Adapter<TimerList
         TextView timerLength;
         RelativeLayout parentLayout;
 
-//        public final View mView;
-//        public final TextView mIdView;
-//        public final TextView mContentView;
-//        public String mItem;
-
         public ViewHolder(View view) {
             super(view);
             mView = view;
-//            mIdView = (TextView) view.findViewById(R.id.item_number);
-//            mContentView = (TextView) view.findViewById(R.id.content);
             timerName = view.findViewById(R.id.item_number);
             timerLength = view.findViewById(R.id.content);
             parentLayout = view.findViewById(R.id.timer_list_parent);
         }
-
-//        @Override
-//        public String toString() {
-//            return super.toString() + " '" + mContentView.getText() + "'";
-//        }
     }
 }
