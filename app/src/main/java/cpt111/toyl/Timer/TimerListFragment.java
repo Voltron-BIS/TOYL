@@ -76,6 +76,7 @@ public class TimerListFragment extends Fragment {
         Context context = view.getContext();
 
         RecyclerView recyclerView = view.findViewById(R.id.timer_list);
+        // add line between rows in list
         recyclerView.addItemDecoration(new DividerItemDecoration(context, VERTICAL));
 
         if (mColumnCount <= 1) {
@@ -84,8 +85,10 @@ public class TimerListFragment extends Fragment {
         } else {
             recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
         }
+        // set adapter
         recyclerView.setAdapter(new TimerListRecyclerViewAdapter(mTimerNames, mTimerLengths, mListener));
 
+        // click action on button to add timer
         FloatingActionButton addTimer = view.findViewById(R.id.timer_add);
         addTimer.setOnClickListener(new View.OnClickListener() {
 
@@ -101,36 +104,9 @@ public class TimerListFragment extends Fragment {
             }
         });
 
-
-        // Set the adapter
-//        if (view instanceof RecyclerView) {
-//            Context context = view.getContext();
-//            RecyclerView recyclerView = (RecyclerView) view;
-//            // line that divides the items in the list
-//            recyclerView.addItemDecoration(new DividerItemDecoration(context, VERTICAL));
-//            if (mColumnCount <= 1) {
-//                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-//
-//            } else {
-//                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-//            }
-//            recyclerView.setAdapter(new TimerListRecyclerViewAdapter(mTimerNames, mTimerLengths, mListener));
         return view;
 
         }
-
-
-//
-//        RecyclerView timerListView = view.findViewById(R.id.timer_list);
-//        timerListView.setOnItem
-//
-//
-//        timerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItem
-//        });
-
-
 
 
     private void setTimersTest() {
@@ -150,20 +126,9 @@ public class TimerListFragment extends Fragment {
     }
 
 
-
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
-
-//
-//        if (context instanceof OnListFragmentInteractionListener) {
-//            mListener = (OnListFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnListFragmentInteractionListener");
-//        }
     }
 
     @Override
