@@ -1,6 +1,5 @@
-package cpt111.toyl;
+package cpt111.toyl.Timer;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -12,14 +11,13 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import cpt111.toyl.TimerListFragment.OnListFragmentInteractionListener;
+import cpt111.toyl.R;
+import cpt111.toyl.Timer.TimerListFragment.OnListFragmentInteractionListener;
 
 import java.util.ArrayList;
 
 // adapter type is the class created at the bottom of this file
-public class MyTimerListRecyclerViewAdapter extends RecyclerView.Adapter<MyTimerListRecyclerViewAdapter.ViewHolder> {
+public class TimerListRecyclerViewAdapter extends RecyclerView.Adapter<TimerListRecyclerViewAdapter.ViewHolder> {
 
     // log for debugging
     private static final String TAG = "RecyclerViewAdapter";
@@ -29,7 +27,7 @@ public class MyTimerListRecyclerViewAdapter extends RecyclerView.Adapter<MyTimer
     private ArrayList<String> mTimerLengths = new ArrayList<>();
     private final OnListFragmentInteractionListener mListener;
 
-    public MyTimerListRecyclerViewAdapter(ArrayList<String> mTimerNames, ArrayList<String> mTimerLengths, OnListFragmentInteractionListener listener) {
+    public TimerListRecyclerViewAdapter(ArrayList<String> mTimerNames, ArrayList<String> mTimerLengths, OnListFragmentInteractionListener listener) {
         this.mTimerNames = mTimerNames;
         this.mTimerLengths = mTimerLengths;
         this.mListener = listener;
@@ -38,7 +36,7 @@ public class MyTimerListRecyclerViewAdapter extends RecyclerView.Adapter<MyTimer
 //    private final List<DummyItem> mValues;
 //    private final OnListFragmentInteractionListener mListener;
 //
-//    public MyTimerListRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+//    public TimerListRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
 //        mValues = items;
 //        mListener = listener;
 //    }

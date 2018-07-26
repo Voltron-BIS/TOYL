@@ -1,8 +1,10 @@
-package cpt111.toyl;
+package cpt111.toyl.Timer;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,14 +12,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 
 
+import cpt111.toyl.EmptyTestFragment;
+import cpt111.toyl.R;
 
-import static android.support.v7.widget.RecyclerView.HORIZONTAL;
 import static android.support.v7.widget.RecyclerView.VERTICAL;
 
 /**
@@ -83,7 +84,23 @@ public class TimerListFragment extends Fragment {
         } else {
             recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
         }
-        recyclerView.setAdapter(new MyTimerListRecyclerViewAdapter(mTimerNames, mTimerLengths, mListener));
+        recyclerView.setAdapter(new TimerListRecyclerViewAdapter(mTimerNames, mTimerLengths, mListener));
+
+        FloatingActionButton addTimer = view.findViewById(R.id.timer_add);
+        addTimer.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                System.out.println("Add button was pressed");
+
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                //TODO: Testing with existing fragment but need new one... if it works
+
+                Fragment myFragment = new TimerAddFragment();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.container, myFragment).addToBackStack(null).commit();
+            }
+        });
+
 
         // Set the adapter
 //        if (view instanceof RecyclerView) {
@@ -97,7 +114,7 @@ public class TimerListFragment extends Fragment {
 //            } else {
 //                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
 //            }
-//            recyclerView.setAdapter(new MyTimerListRecyclerViewAdapter(mTimerNames, mTimerLengths, mListener));
+//            recyclerView.setAdapter(new TimerListRecyclerViewAdapter(mTimerNames, mTimerLengths, mListener));
         return view;
 
         }
@@ -133,16 +150,21 @@ public class TimerListFragment extends Fragment {
     }
 
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
+
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+
+//
 //        if (context instanceof OnListFragmentInteractionListener) {
 //            mListener = (OnListFragmentInteractionListener) context;
 //        } else {
 //            throw new RuntimeException(context.toString()
 //                    + " must implement OnListFragmentInteractionListener");
 //        }
-//    }
+    }
 
     @Override
     public void onDetach() {
