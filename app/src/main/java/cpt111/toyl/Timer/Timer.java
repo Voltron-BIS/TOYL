@@ -1,4 +1,4 @@
-package cpt111.toyl;
+package cpt111.toyl.Timer;
 
 public class Timer {
 

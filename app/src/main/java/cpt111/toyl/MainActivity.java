@@ -10,6 +10,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import cpt111.toyl.Timer.TimerListFragment;
+
 public class MainActivity extends AppCompatActivity
 {
 
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity
                     break;
 			}
 
-            fragmentTransaction.addToBackStack(null);
+            //fragmentTransaction.addToBackStack(null);
 			fragmentTransaction.replace(R.id.container, selectedFragment).commit();
 
 			return true;
