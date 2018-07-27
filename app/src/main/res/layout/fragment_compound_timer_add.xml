@@ -42,6 +42,14 @@
                 android:text="Add Set"
                 android:layout_height="wrap_content" />
 
+            <!--TODO: TEST TEXT TO BE REMOVED LATER -->
+            <TextView
+                android:id="@+id/test_Length"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LENGTH"/>
+
+
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
@@ -66,6 +74,12 @@
             android:layout_height="wrap_content"
             android:text="Save"
             android:layout_below="@id/timer_add_list"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/timer_add_save"
+            android:inputType="time"/>
 
     </RelativeLayout>
 </ScrollView>

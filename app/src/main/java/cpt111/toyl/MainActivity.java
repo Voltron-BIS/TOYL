@@ -10,6 +10,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
+import cpt111.toyl.Timer.Timer;
 import cpt111.toyl.Timer.TimerListFragment;
 
 public class MainActivity extends AppCompatActivity
