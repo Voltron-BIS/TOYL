@@ -11,4 +11,15 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!--Strings for Timer Type-->
+    <string name="timer_type_descending">Descending</string>
+    <string name="timer_type_ascending">Ascending</string>
+
+    <string-array name="timer_type_list">
+        <item>@string/timer_type_descending</item>
+        <item>@string/timer_type_ascending</item>
+    </string-array>
+
 </resources>

@@ -16,7 +16,7 @@ import cpt111.toyl.Timer.TimerListFragment.OnListFragmentInteractionListener;
 import java.util.ArrayList;
 
 // adapter type is the class created at the bottom of this file
-public class TimerListRecyclerViewAdapter extends RecyclerView.Adapter<TimerListRecyclerViewAdapter.ViewHolder> {
+public class TimerAddListRecyclerViewAdapter extends RecyclerView.Adapter<TimerAddListRecyclerViewAdapter.ViewHolder> {
 
     // log for debugging
     private static final String TAG = "RecyclerViewAdapter";
@@ -26,7 +26,7 @@ public class TimerListRecyclerViewAdapter extends RecyclerView.Adapter<TimerList
     private ArrayList<String> mTimerLengths = new ArrayList<>();
     private final OnListFragmentInteractionListener mListener;
 
-    public TimerListRecyclerViewAdapter(ArrayList<String> mTimerNames, ArrayList<String> mTimerLengths, OnListFragmentInteractionListener listener) {
+    public TimerAddListRecyclerViewAdapter(ArrayList<String> mTimerNames, ArrayList<String> mTimerLengths, OnListFragmentInteractionListener listener) {
         this.mTimerNames = mTimerNames;
         this.mTimerLengths = mTimerLengths;
         this.mListener = listener;
