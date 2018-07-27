@@ -14,23 +14,22 @@
             android:id="@+id/add_timer_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Timer Name" />
+            android:hint="Timer Name"
+            android:inputType="textPersonName" />
 
-
-        <EditText
-            android:layout_below="@id/add_timer_name"
-            android:id="@+id/repetitions"
-            android:inputType="number"
+        <Spinner
+            android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Repetitions" />
-
+            android:layout_below="@id/add_timer_name"
+            android:entries="@array/timer_type_list"
+            android:prompt="@string/timer_type_descending" />
 
         <LinearLayout
             android:id="@+id/button_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/repetitions">
+            android:layout_below="@id/spinner">
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -42,6 +41,14 @@
                 android:id="@+id/add_set"
                 android:text="Add Set"
                 android:layout_height="wrap_content" />
+
+            <!--TODO: TEST TEXT TO BE REMOVED LATER -->
+            <TextView
+                android:id="@+id/test_Length"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LENGTH"/>
+
 
         </LinearLayout>
 
@@ -56,7 +63,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-            tools:context=".Timer.AddTimer.TimerAddFragment"
+            tools:context=".Timer.TimerAddFragment"
             tools:listitem="@layout/fragment_timerlist">
 
         </android.support.v7.widget.RecyclerView>
@@ -67,6 +74,12 @@
             android:layout_height="wrap_content"
             android:text="Save"
             android:layout_below="@id/timer_add_list"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/timer_add_save"
+            android:inputType="time"/>
 
     </RelativeLayout>
 </ScrollView>

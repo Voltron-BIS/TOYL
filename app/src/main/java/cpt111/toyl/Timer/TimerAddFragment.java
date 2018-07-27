@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -20,13 +21,16 @@ import cpt111.toyl.R;
 
 import static android.support.v7.widget.RecyclerView.VERTICAL;
 
-public class TimerAddFragment extends Fragment {
+public class TimerAddFragment extends Fragment implements TimerLengthDialog.OnInputSelected {
 
     private String timerName;
 
     // test data variables
     private ArrayList<String> mTimerNames = new ArrayList<>();
     private ArrayList<String> mTimerLengths = new ArrayList<>();
+
+    private Button addSubTimerButton;
+    private TextView testText;
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -46,8 +50,6 @@ public class TimerAddFragment extends Fragment {
         return fragment;
     }
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,8 +63,24 @@ public class TimerAddFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_timer_add, container, false);
+        View view = inflater.inflate(R.layout.fragment_compound_timer_add, container, false);
         Context context = view.getContext();
+
+        addSubTimerButton = view.findViewById(R.id.add_sub_timer);
+        testText = view.findViewById(R.id.test_Length);
+
+        addSubTimerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                TimerLengthDialog dialog = new TimerLengthDialog();
+                // set this as target fragment so the info can be sent from the dialog
+                // request code can be any number, apparently
+                dialog.setTargetFragment(TimerAddFragment.this, 1);
+                dialog.show(getFragmentManager(), "TimerLengthDialog");
+
+            }
+        });
 
         RecyclerView recyclerView = view.findViewById(R.id.timer_add_list);
         // add line between rows in list
@@ -107,6 +125,14 @@ public class TimerAddFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    // interface method
+    @Override
+    public void sendInput(String input) {
+
+        testText.setText(input);
+
     }
 
     /**
