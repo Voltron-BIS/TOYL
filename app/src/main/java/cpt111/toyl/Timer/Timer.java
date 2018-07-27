@@ -2,18 +2,42 @@ package cpt111.toyl.Timer;
 
 public class Timer {
 
-//    Test stuff for now, not really a Timer
-
-    private String testName;
-    private String testSubtitle;
+    private String name;
+    private long length;
+    private long elapsed;
 
     public Timer() {
-        this.testName = testName;
-        this.testSubtitle = testSubtitle;
+
     }
 
-    public Timer(String testName, String testSubtitle) {
-        this.testName = testName;
-        this.testSubtitle = testSubtitle;
+    public Timer(String name, long length) {
+        this.name = name;
+        this.length = length;
+        // starts at 0
+        this.elapsed = 0;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public long getLength() {
+        return length;
+    }
+
+    public void setLength(long length) {
+        this.length = length;
+    }
+
+    public long getElapsed() {
+        return elapsed;
+    }
+
+    public void setElapsed(long elapsed) {
+        this.elapsed = elapsed;
     }
 }
