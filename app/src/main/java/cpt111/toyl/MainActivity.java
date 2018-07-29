@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity
 			FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
 			// TODO: To be changed to Tasks fragment
-			Fragment selectedFragment = new OverlaysWhiteboardFragment();
+			Fragment selectedFragment = new EmptyTestFragment();
 
 			switch (item.getItemId()) {
 
