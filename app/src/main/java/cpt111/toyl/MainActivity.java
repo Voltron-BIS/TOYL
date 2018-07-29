@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity
 			FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
 			// TODO: To be changed to Tasks fragment
-			Fragment selectedFragment = new EmptyTestFragment();
+			Fragment selectedFragment = new OverlaysWhiteboardFragment();
 
 			switch (item.getItemId()) {
 
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity
 
 				case R.id.navigation_scheduler:
                     setTitle(R.string.title_scheduler);
-                    selectedFragment = new EmptyTestFragment();
+                    selectedFragment = new TimeSchedulerFragment();
                     break;
 
 				case R.id.navigation_statistics:
