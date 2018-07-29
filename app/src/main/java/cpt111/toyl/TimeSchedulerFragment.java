@@ -12,9 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
-
 import java.util.Calendar;
-import java.util.Objects;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import static cpt111.toyl.R.layout.fragment_time_scheduler;
 
@@ -86,6 +86,7 @@ public class TimeSchedulerFragment extends Fragment {
         mDisplaydate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //TODO: work out how to get date out side onClick.
                 Calendar cal = Calendar.getInstance();
                 int year = cal.get(Calendar.YEAR);
                 int month = cal.get(Calendar.MONTH);
@@ -106,11 +107,42 @@ public class TimeSchedulerFragment extends Fragment {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
 
+                GregorianCalendar GregorianCalendar = new GregorianCalendar(year, month, day);
+                int day_of_week = GregorianCalendar.get(GregorianCalendar.DAY_OF_WEEK);
+
+                String day_name = "";
+
+                switch (day_of_week) {
+                    case 1:
+                        day_name = "Sunday";
+                        break;
+                    case 2:
+                        day_name = "Monday";
+                        break;
+                    case 3:
+                        day_name = "Tuesday";
+                        break;
+                    case 4:
+                        day_name = "Wednesday";
+                        break;
+                    case 5:
+                        day_name = "Thursday";
+                        break;
+                    case 6:
+                        day_name = "Friday";
+                        break;
+                    case 7:
+                        day_name = "Saturday";
+                        break;
+                }
+
                 month = month + 1;
-                // TODO: Use date string to retrieve tasks of the date selected.
+                // TODO: Use date string to retrieve tasks of the date selected?.
                 String date = day + "/" + month + "/" + year;
 
                 mDisplaydate.setText(date);
+                mDisplayDay.setText(day_name);
+
 
             }
         };
