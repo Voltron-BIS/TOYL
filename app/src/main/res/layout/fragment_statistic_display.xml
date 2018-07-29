@@ -6,11 +6,10 @@
     tools:context=".StatisticDisplayFragment">
 
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/piechart"
+    <com.github.mikephil.charting.charts.HorizontalBarChart
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        />
+        android:id="@+id/bargraph"></com.github.mikephil.charting.charts.HorizontalBarChart>
 
 
 </FrameLayout>

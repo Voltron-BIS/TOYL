@@ -1,7 +1,6 @@
 package cpt111.toyl;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,10 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,12 +32,12 @@ public class StatisticDisplayFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    BarChart barChart;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    float timeSpent[] = {98.8f,98.8f,98.8f,98.8f,98.8f,98.8f};
-    String categoryName[] = {"Domestic","Fitness","Study","Family","Sleep","Work"};
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -73,7 +73,6 @@ public class StatisticDisplayFragment extends Fragment {
         }
 
 
-
     }
 
     @Override
@@ -85,34 +84,40 @@ public class StatisticDisplayFragment extends Fragment {
 
         LinearLayout cols = (LinearLayout) rootView.findViewById(R.id.cols);
 
-        final int[] CHART_COLORS_1 = {
-                Color.rgb(193, 37, 82), Color.rgb(255, 102, 0), Color.rgb(245, 199, 0),
-                Color.rgb(106, 150, 31), Color.rgb(179, 100, 53), Color.rgb(255, 0, 0)
-        };
+        barChart = (BarChart) rootView.findViewById(R.id.bargraph);
+
+        ArrayList<BarEntry> barEntries = new ArrayList<>();
+        //for use with version 3.0.3
+        //List<BarEntry> barEntries = new ArrayList<>();
+        barEntries.add(new BarEntry(34f,0));
+        barEntries.add(new BarEntry(44f,1));
+        barEntries.add(new BarEntry(55f,2));
+        barEntries.add(new BarEntry(24f,3));
+        barEntries.add(new BarEntry(14f,4));
+        BarDataSet barDataSet = new BarDataSet(barEntries, "Dates");
+
+        ArrayList<String> theDates = new ArrayList<>();
+        theDates.add("Domestic");
+        theDates.add("Study");
+        theDates.add("Family");
+        theDates.add("Fitness");
+        theDates.add("Recreation");
 
 
-            //populating list of pie entries
-            List<PieEntry> pieEntries = new ArrayList<>();
-            for (int i = 0; i < timeSpent.length; i++) {
-                pieEntries.add(new PieEntry(timeSpent[i], categoryName[i]));
-            }
 
+        BarData theData = new BarData(theDates,barDataSet);
+        barChart.setData(theData);
 
+        /*for use with version 3.0.3
+        BarData theData = new BarData(barDataSet);
+        barChart.setData(theData);
+         */
 
-            PieDataSet dataSet = new PieDataSet(pieEntries, "Time Spent");
-            dataSet.setColors(CHART_COLORS_1);
-            PieData data = new PieData(dataSet);
-
-            //get the chart;
-            PieChart chart = (PieChart) rootView.findViewById(R.id.piechart);
-            chart.setData(data);
-            chart.setHoleRadius(25f);
-            chart.setTransparentCircleAlpha(0);
-            chart.setCenterTextSize(10);
-            chart.setCenterText("Times Spent");
-            chart.animateY(1000);
-            chart.invalidate();
-
+        barChart.setTouchEnabled(true);
+        barChart.setDragEnabled(true);
+        barChart.setScaleEnabled(true);
+        Legend l = barChart.getLegend();
+        l.setEnabled(false);
 
 
         return rootView;
@@ -143,7 +148,7 @@ public class StatisticDisplayFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-     //   mListener = null;
+        //   mListener = null;
     }
 
     /**
@@ -160,7 +165,6 @@ public class StatisticDisplayFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-
 
 
 }
