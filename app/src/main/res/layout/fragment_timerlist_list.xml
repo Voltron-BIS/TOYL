@@ -18,7 +18,7 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-    tools:context=".Timer.TimerListFragment"
+    tools:context=".Timer.Home.TimerListFragment"
     tools:listitem="@layout/fragment_timerlist" />
 
     <android.support.design.widget.FloatingActionButton
