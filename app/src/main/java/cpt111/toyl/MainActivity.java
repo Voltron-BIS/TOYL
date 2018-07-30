@@ -85,4 +85,5 @@ public class MainActivity extends AppCompatActivity
 		bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 	}
+
 }

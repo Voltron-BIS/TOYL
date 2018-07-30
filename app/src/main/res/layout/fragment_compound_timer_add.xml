@@ -14,8 +14,8 @@
             android:id="@+id/add_timer_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Timer Name"
-            android:inputType="textPersonName" />
+            android:hint="Timer Name" />
+
 
         <Spinner
             android:id="@+id/spinner"
@@ -25,11 +25,20 @@
             android:entries="@array/timer_type_list"
             android:prompt="@string/timer_type_descending" />
 
+        <EditText
+            android:layout_below="@id/spinner"
+            android:id="@+id/repetitions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Repetitions"
+            android:inputType="textPersonName" />
+
+
         <LinearLayout
             android:id="@+id/button_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/spinner">
+            android:layout_below="@id/repetitions">
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -63,7 +72,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-            tools:context=".Timer.TimerAddFragment"
+            tools:context=".Timer.AddTimer.TimerAddFragment"
             tools:listitem="@layout/fragment_timerlist">
 
         </android.support.v7.widget.RecyclerView>
@@ -74,12 +83,6 @@
             android:layout_height="wrap_content"
             android:text="Save"
             android:layout_below="@id/timer_add_list"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/timer_add_save"
-            android:inputType="time"/>
 
     </RelativeLayout>
 </ScrollView>
