@@ -1,5 +1,7 @@
 package cpt111.toyl.Timer;
 
+import android.os.CountDownTimer;
+
 import java.util.ArrayList;
 
 import cpt111.toyl.Timer.Model.AbstractTimer;
@@ -10,7 +12,7 @@ public class Dummy_TimerTempData {
 
     //temporary data that would technically be stored in db instead of here
     //TODO: to be changed to compound timers and then moved to db
-    ArrayList<AbstractTimer> timers = new ArrayList<>();
+    ArrayList<CompoundTimer> timers = new ArrayList<>();
 
 
     public void addCompoundTimer(CompoundTimer timer) {
@@ -18,7 +20,7 @@ public class Dummy_TimerTempData {
         System.out.println("Size of list is " + timers.size());
     }
 
-    public ArrayList<AbstractTimer> getTimers() {
+    public ArrayList<CompoundTimer> getTimers() {
         return timers;
     }
 
@@ -38,5 +40,11 @@ TODO: What is next?
 - Set up running timer test
 - Timer likely to be split into an abstract class with 2 children (timer/stopwatch)
 - ArrayList to be of type AbstractTimer and then instanceOf will be used to separate implementation
+
+/// New todo
+Work out the stopwatch stuff
+Add repetitions
+Data validation?
+Nested compound timers
 
  */
