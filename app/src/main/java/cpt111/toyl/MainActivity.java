@@ -10,13 +10,15 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import java.util.ArrayList;
-
-import cpt111.toyl.Timer.Timer;
-import cpt111.toyl.Timer.TimerListFragment;
+import cpt111.toyl.Timer.Dummy_TimerTempData;
+import cpt111.toyl.Timer.Home.TimerListFragment;
 
 public class MainActivity extends AppCompatActivity
 {
+
+	// TODO: temp data to simulate DB (timers), public to avoid cluttering this class with
+    // methods as it will be moved from here
+	public Dummy_TimerTempData listOfTimers;
 
 	private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener()
 	{
@@ -68,6 +70,9 @@ public class MainActivity extends AppCompatActivity
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		listOfTimers = new Dummy_TimerTempData();
+
 		setContentView(R.layout.activity_main);
 
 		getWindow().getDecorView().setBackgroundColor(Color.WHITE);
@@ -80,4 +85,5 @@ public class MainActivity extends AppCompatActivity
 		bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 	}
+
 }
