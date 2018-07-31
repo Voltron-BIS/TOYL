@@ -94,8 +94,18 @@ public class OverlaysWhiteboardFragment extends Fragment implements View.OnClick
 
             while(timeIndex.isBefore(timeStampPlus24)) {
                 //mDataSet.add(timeIndex);
+                String hour = "";
                 TextView textView = new TextView(getActivity());
-                textView.setText(String.valueOf(timeIndex.getHour()));
+
+                // If the hour is less than 10 than pad it with a zero
+                if(timeIndex.getHour() < 10) {
+                    hour = "0" + String.valueOf(timeIndex.getHour());
+                }
+                else {
+                    hour = String.valueOf(timeIndex.getHour());
+                }
+
+                textView.setText(hour);
                 textView.setTextSize(12);
                 textView.setGravity(Gravity.CENTER);
                 textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
