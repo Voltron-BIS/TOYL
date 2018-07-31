@@ -3,12 +3,14 @@ package cpt111.toyl;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,9 +18,9 @@ import java.time.OffsetDateTime;
 import java.time.ZoneId;
 
 
-public class OverlaysWhiteboardFragment extends Fragment {
+public class OverlaysWhiteboardFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER.
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -103,6 +105,10 @@ public class OverlaysWhiteboardFragment extends Fragment {
 
         }
 
+        // Attach a listener to the fab
+        FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.overlays_fab);
+        fab.setOnClickListener(this);
+
         // Inflate the layout for this fragment
         return rootView;
     }
@@ -133,6 +139,16 @@ public class OverlaysWhiteboardFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         //mListener = null;
+    }
+
+    @Override
+    public void onClick(View view) {
+        // Initialise the fragment manager
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Fragment fragment = new OverlaysSelectFragment();
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.replace(R.id.container, fragment).commit();
     }
 
     /**
