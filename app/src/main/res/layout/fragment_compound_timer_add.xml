@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/add_timer_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Timer Name" />
+
+
+        <EditText
+            android:layout_below="@id/add_timer_name"
+            android:id="@+id/repetitions"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Repetitions" />
+
+
+        <LinearLayout
+            android:id="@+id/button_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/repetitions">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Sub-Timer"
+                android:id="@+id/add_sub_timer" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:id="@+id/add_set"
+                android:text="Add Set"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+
+            android:id="@+id/timer_add_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button_layout"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            tools:context=".Timer.AddTimer.TimerAddFragment"
+            tools:listitem="@layout/fragment_timerlist">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <Button
+            android:id="@+id/timer_add_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:layout_below="@id/timer_add_list"/>
+
+    </RelativeLayout>
+</ScrollView>

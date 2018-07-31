@@ -1,5 +1,6 @@
 package cpt111.toyl;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -9,8 +10,15 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import cpt111.toyl.Timer.Dummy_TimerTempData;
+import cpt111.toyl.Timer.Home.TimerListFragment;
+
 public class MainActivity extends AppCompatActivity
 {
+
+	// TODO: temp data to simulate DB (timers), public to avoid cluttering this class with
+    // methods as it will be moved from here
+	public Dummy_TimerTempData listOfTimers;
 
 	private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener()
 	{
@@ -52,7 +60,7 @@ public class MainActivity extends AppCompatActivity
                     break;
 			}
 
-            fragmentTransaction.addToBackStack(null);
+            //fragmentTransaction.addToBackStack(null);
 			fragmentTransaction.replace(R.id.container, selectedFragment).commit();
 
 			return true;
@@ -62,7 +70,13 @@ public class MainActivity extends AppCompatActivity
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		listOfTimers = new Dummy_TimerTempData();
+
 		setContentView(R.layout.activity_main);
+
+		getWindow().getDecorView().setBackgroundColor(Color.WHITE);
+
 
 		BottomNavigationView bottomNavigationView;
 		bottomNavigationView = findViewById(R.id.navigation);
