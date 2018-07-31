@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity
 
 				case R.id.navigation_statistics:
                     setTitle(R.string.title_statistics);
-                    selectedFragment = new EmptyTestFragment();
+                    selectedFragment = new StatisticDisplayFragment();
                     break;
 			}
 
