@@ -212,9 +212,9 @@ public class TimeSchedulerFragment extends Fragment {
         final Test_info[] test;
         test = new Test_info[3];
 
-        test[0] = new Test_info("Test task 1","tests", "Do a backflip ");
-        test[1] = new Test_info("Test task 2","tests", "Do a frontflip ");
-        test[2] = new Test_info("Test task 3","tests", "Do a sideflip ");
+        test[0] = new Test_info("Test task 1","test 1", "Do a backflip ");
+        test[1] = new Test_info("Test task 2","test 2", "Do lots for frontflips ");
+        test[2] = new Test_info("Test task 3","tests 3", "do more sideflips ");
 
 
         return test[Task];
