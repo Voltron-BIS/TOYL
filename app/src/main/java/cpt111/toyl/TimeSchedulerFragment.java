@@ -33,19 +33,6 @@ public class TimeSchedulerFragment extends Fragment {
     private Button mTestbutton2;
     private Button mTestbutton3;
 
-    public class Test_info {
-        public String task_Name;
-        public String task_Category;
-        public String task_Description;
-        Test_info(String task_Name, String task_Category, String task_Description)
-        {
-            this.task_Name = task_Name;
-            this.task_Category = task_Category;
-            this.task_Description = task_Description;
-        }
-    }
-
-
 
     //-----------------------------------------------
 
@@ -71,17 +58,10 @@ public class TimeSchedulerFragment extends Fragment {
         mDisplaytask_name = rootView.findViewById(R.id.task_name);
         mDisplaytask_category = rootView.findViewById(R.id.task_category);
         mDisplaydescription = rootView.findViewById(R.id.task_description);
+        // TODO: remove buttons for testing.
         mTestbutton1 = rootView.findViewById(R.id.test1);
         mTestbutton2 = rootView.findViewById(R.id.test2);
         mTestbutton3 = rootView.findViewById(R.id.test3);
-
-
-        //test Task info
-        //-----------------------------------------------
-
-
-
-
 
 
         //Get current date and set.
@@ -90,6 +70,7 @@ public class TimeSchedulerFragment extends Fragment {
         int month = cal.get(Calendar.MONTH);
         int day = cal.get(Calendar.DAY_OF_MONTH);
         int day_of_week = cal.get(Calendar.DAY_OF_WEEK);
+        //call day name function
         String day_name = Day(day_of_week);
         month = month + 1;
         String todays_date = day + "/" + month + "/" + year;
@@ -176,7 +157,7 @@ public class TimeSchedulerFragment extends Fragment {
         return rootView;
 
     }
-
+//function for setting day name
     private String Day(int day){
         String day_name = "";
         switch (day) {
@@ -207,6 +188,18 @@ public class TimeSchedulerFragment extends Fragment {
 
     //test Task info
     //-----------------------------------------------
+
+    public class Test_info {
+        public String task_Name;
+        public String task_Category;
+        public String task_Description;
+        Test_info(String task_Name, String task_Category, String task_Description)
+        {
+            this.task_Name = task_Name;
+            this.task_Category = task_Category;
+            this.task_Description = task_Description;
+        }
+    }
 
     private Test_info Get_Test_Info(int Task){
         final Test_info[] test;
