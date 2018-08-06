@@ -61,7 +61,7 @@ public class TaskTrackerListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tasktrackerlist_list, container, false);
 
-        // Set the adapter
+        // Set the adapt   er
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
