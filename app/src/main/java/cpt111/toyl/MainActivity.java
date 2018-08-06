@@ -10,6 +10,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+
+import cpt111.toyl.Tasks.TaskTrackerListFragment;
 import cpt111.toyl.Timer.Dummy_TimerTempData;
 import cpt111.toyl.Timer.Home.TimerListFragment;
 
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity
 
                 case R.id.navigation_tasks:
                     setTitle(R.string.title_tasks);
-                    selectedFragment = new EmptyTestFragment();
+                    selectedFragment = new TaskTrackerListFragment();
                     break;
 
 				case R.id.navigation_scheduler:

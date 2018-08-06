@@ -28,4 +28,14 @@
         <item>@string/timer_type_ascending</item>
     </string-array>
 
+    <!--Strings for Timer Type-->
+    <string name="tasktracker_task_name">Task Name</string>
+    <string name="tasktracker_task_description">Task Description</string>
+    <string name="tasktracker_taskgroup_name">Task Group Name</string>
+    <string name="tasktracker_taskgroup_description">Task Group Description</string>
+    <string name="tasktracker_category_name">Category Name</string>
+    <string name="tasktracker_category_description">Category Description</string>
+    <string name="tasktracker_stopwatch_start">Start</string>
+    <string name="tasktracker_stopwatch_pause">Pause</string>
+
 </resources>
