@@ -16,6 +16,12 @@
     <!--Strings for Timer Type-->
     <string name="timer_type_descending">Descending</string>
     <string name="timer_type_ascending">Ascending</string>
+    <string name="interval_count">Interval Count</string>
+    <string name="shortest_interval">Shortest Interval</string>
+    <string name="longest_interval">Longest Interval</string>
+    <string name="tasks_completed">Tasks Completed</string>
+    <string name="times_paused">Times Paused</string>
+    <string name="average_duration">Average Duration</string>
 
     <string-array name="timer_type_list">
         <item>@string/timer_type_descending</item>
