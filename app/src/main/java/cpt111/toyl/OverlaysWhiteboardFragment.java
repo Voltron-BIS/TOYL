@@ -110,6 +110,7 @@ public class OverlaysWhiteboardFragment extends Fragment implements View.OnClick
             OffsetDateTime timeStamp = OffsetDateTime.now(ZoneId.of(zone));
             OffsetDateTime timeStampMinus24 = timeStamp.minusDays(1);
             OffsetDateTime timeStampPlus24 = timeStamp.plusDays(1);
+            //OffsetDateTime timeStampPlus24 = timeStamp;
             OffsetDateTime timeIndex = timeStampMinus24;
 
             // Reset the hour id
@@ -146,7 +147,7 @@ public class OverlaysWhiteboardFragment extends Fragment implements View.OnClick
                         commonTimes.put(hourId,1);
                     }
                     else {
-                        commonTimes.put(hourId,hourFlag++);
+                        commonTimes.put(hourId,++hourFlag);
                     }
                 }
 
