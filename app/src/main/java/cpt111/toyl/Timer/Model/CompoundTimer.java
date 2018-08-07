@@ -1,20 +1,39 @@
 package cpt111.toyl.Timer.Model;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class CompoundTimer extends AbstractTimer{
+public class CompoundTimer {
 
     private String name;
-    private boolean isCountDown;
     private int repeats;
+    // Object as it can be simple timer or set
+    private List<AbstractTimer> listOfTimers;
 
-    // Object as it can be simple timer or compound timer
-    private ArrayList<AbstractTimer> listOfTimers;
-
-    public CompoundTimer(String name, boolean isCountDown, int repeats, ArrayList<AbstractTimer> listOfTimers) {
-        super.setName(name);
-        this.isCountDown = isCountDown;
+    public CompoundTimer(String name, int repeats, List<AbstractTimer> listOfTimers) {
+        this.name = name;
         this.repeats = repeats;
+        this.listOfTimers = listOfTimers;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getRepeats() {
+        return repeats;
+    }
+
+    public void setRepeats(int repeats) {
+        this.repeats = repeats;
+    }
+
+    public void setListOfTimers(List<AbstractTimer> listOfTimers) {
+
         this.listOfTimers = listOfTimers;
     }
 
@@ -22,12 +41,10 @@ public class CompoundTimer extends AbstractTimer{
         listOfTimers.add(timer);
     }
 
-    public boolean getIsCountDown() {
-        return isCountDown;
-    }
 
-
-    public ArrayList<AbstractTimer> getListOfTimers() {
+    public List<AbstractTimer> getListOfTimers() {
         return listOfTimers;
     }
+
+
 }

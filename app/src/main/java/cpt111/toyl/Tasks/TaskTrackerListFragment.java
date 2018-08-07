@@ -1,11 +1,8 @@
-package cpt111.toyl.Timer.Home;
+package cpt111.toyl.Tasks;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,14 +10,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import cpt111.toyl.MainActivity;
 import cpt111.toyl.R;
+import cpt111.toyl.Tasks.dummy.DummyContent;
+import cpt111.toyl.Tasks.dummy.DummyContent.DummyItem;
 
-import cpt111.toyl.Timer.AddTimer.TimerAddFragment;
+import java.util.List;
 
-import static android.support.v7.widget.RecyclerView.VERTICAL;
-
-public class TimerListFragment extends Fragment {
+/**
+ * A fragment representing a list of Items.
+ * <p/>
+ * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
+ * interface.
+ */
+public class TaskTrackerListFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -32,13 +34,13 @@ public class TimerListFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public TimerListFragment() {
+    public TaskTrackerListFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static TimerListFragment newInstance(int columnCount) {
-        TimerListFragment fragment = new TimerListFragment();
+    public static TaskTrackerListFragment newInstance(int columnCount) {
+        TaskTrackerListFragment fragment = new TaskTrackerListFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -49,10 +51,6 @@ public class TimerListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // temp code to connect data
-        MainActivity activity = (MainActivity)getActivity();
-        //list = activity.listOfTimers.getTimers();
-
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
@@ -61,47 +59,32 @@ public class TimerListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_tasktrackerlist_list, container, false);
 
-        View view = inflater.inflate(R.layout.fragment_timerlist_list, container, false);
-        Context context = view.getContext();
-        MainActivity activity = (MainActivity) getActivity();
-
-        RecyclerView recyclerView = view.findViewById(R.id.timer_list);
-        // add line between rows in list
-        recyclerView.addItemDecoration(new DividerItemDecoration(context, VERTICAL));
-
-        if (mColumnCount <= 1) {
-            recyclerView.setLayoutManager(new LinearLayoutManager(context));
-
-        } else {
-            recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-        }
-        // set adapter
-        recyclerView.setAdapter(new TimerListRecyclerViewAdapter(activity.listOfTimers.getTimers(), mListener));
-
-        // click action on button to add timer
-        FloatingActionButton addTimer = view.findViewById(R.id.timer_add);
-        addTimer.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-
-
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                Fragment myFragment = new TimerAddFragment();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.container, myFragment).addToBackStack(null).commit();
-
+        // Set the adapter
+        if (view instanceof RecyclerView) {
+            Context context = view.getContext();
+            RecyclerView recyclerView = (RecyclerView) view;
+            if (mColumnCount <= 1) {
+                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            } else {
+                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-        });
-
-        return view;
-
+            recyclerView.setAdapter(new TaskTrackerListRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
+        return view;
+    }
 
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+    //    if (context instanceof OnListFragmentInteractionListener) {
+   //         mListener = (OnListFragmentInteractionListener) context;
+   //     } else {
+   //         throw new RuntimeException(context.toString()
+   //                 + " must implement OnListFragmentInteractionListener");
+   //     }
     }
 
     @Override
@@ -122,6 +105,6 @@ public class TimerListFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction();
+        void onListFragmentInteraction(DummyItem item);
     }
 }

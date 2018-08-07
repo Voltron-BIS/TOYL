@@ -12,14 +12,32 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-
     <!--Strings for Timer Type-->
     <string name="timer_type_descending">Descending</string>
     <string name="timer_type_ascending">Ascending</string>
+    <string name="interval_count">Interval Count</string>
+    <string name="shortest_interval">Shortest Interval</string>
+    <string name="longest_interval">Longest Interval</string>
+    <string name="tasks_completed">Tasks Completed</string>
+    <string name="times_paused">Times Paused</string>
+    <string name="average_duration">Average Duration</string>
+
 
     <string-array name="timer_type_list">
         <item>@string/timer_type_descending</item>
         <item>@string/timer_type_ascending</item>
     </string-array>
+
+
+    <!--Strings for Timer Type-->
+    <string name="tasktracker_task_name">Task Name</string>
+    <string name="tasktracker_task_description">Task Description</string>
+    <string name="tasktracker_taskgroup_name">Task Group Name</string>
+    <string name="tasktracker_taskgroup_description">Task Group Description</string>
+    <string name="tasktracker_category_name">Category Name</string>
+    <string name="tasktracker_category_description">Category Description</string>
+    <string name="tasktracker_stopwatch_start">Start</string>
+    <string name="tasktracker_stopwatch_pause">Pause</string>
+
 
 </resources>
