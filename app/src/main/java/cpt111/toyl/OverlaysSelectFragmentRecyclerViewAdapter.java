@@ -1,5 +1,6 @@
 package cpt111.toyl;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.RecyclerView;
@@ -17,20 +18,38 @@ import java.time.format.DateTimeFormatter;
 public class OverlaysSelectFragmentRecyclerViewAdapter extends RecyclerView.Adapter<OverlaysSelectFragmentRecyclerViewAdapter.ViewHolder>{
     // Variable declaration.
     private String[] mDataSet;
+    public OverlaysSelectItemClickListener clickListener;
+
+    private Context context;
+
+    // Constructor
+    public OverlaysSelectFragmentRecyclerViewAdapter(String[] mDataSet, Context context, OverlaysSelectItemClickListener clickListener) {
+        this.mDataSet = mDataSet;
+        this.context = context;
+        this.clickListener = clickListener;
+    }
 
     // Provide a reference to the views for each item
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView mZoneIdView;
         public TextView mZoneNowView;
-        public ViewHolder(View v) {
+        public OverlaysSelectItemClickListener clickListener;
+
+        public ViewHolder(View v, OverlaysSelectItemClickListener clickListener) {
             super(v);
             this.mZoneIdView = (TextView) v.findViewById(R.id.zone_id_text_view);
             this.mZoneNowView = (TextView) v.findViewById(R.id.zone_id_now);
+            this.clickListener = clickListener;
+
             v.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
+            if (clickListener != null) {
+                clickListener.onClick(v, getAdapterPosition());
+            }
+            /*
             // Get the selected item
             RelativeLayout item = (RelativeLayout) v.findViewById(R.id.zone_item);
             ColorDrawable bg = (ColorDrawable) item.getBackground();
@@ -45,21 +64,18 @@ public class OverlaysSelectFragmentRecyclerViewAdapter extends RecyclerView.Adap
             else if(bg == null) {
                 item.setBackgroundColor(Color.GREEN);
             }
-
+            */
         }
     }
 
-    // Constructor
-    public OverlaysSelectFragmentRecyclerViewAdapter(String[] mDataSet) {
-        this.mDataSet = mDataSet;
-    }
+
 
     // Create new views invoked by the layout manager
     @Override
     public OverlaysSelectFragmentRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int ViewType) {
         // Create a new view
         View v = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_overlaysselectfragment_item, parent, false);
-        ViewHolder vh = new ViewHolder(v);
+        ViewHolder vh = new ViewHolder(v, clickListener);
         return vh;
     }
 
@@ -75,9 +91,23 @@ public class OverlaysSelectFragmentRecyclerViewAdapter extends RecyclerView.Adap
         holder.mZoneNowView.setText(time);
     }
 
+    public void setOnClickListener(OverlaysSelectItemClickListener itemClickListener) {
+        this.clickListener = itemClickListener;
+    }
+
     // Return the size of your dataset
     @Override
     public int getItemCount() {
         return mDataSet.length;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 }

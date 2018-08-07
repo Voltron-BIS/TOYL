@@ -34,14 +34,6 @@ public class OverlaysWhiteboardFragment extends Fragment implements View.OnClick
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment OverlaysWhiteboardFragment.
-     */
     // TODO: Rename and change types and number of parameters
     public static OverlaysWhiteboardFragment newInstance(String param1, String param2) {
         OverlaysWhiteboardFragment fragment = new OverlaysWhiteboardFragment();
@@ -55,6 +47,8 @@ public class OverlaysWhiteboardFragment extends Fragment implements View.OnClick
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+      
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -84,12 +78,28 @@ public class OverlaysWhiteboardFragment extends Fragment implements View.OnClick
             col.setLayoutParams(params);
             col.setBackgroundResource(R.drawable.border);
             col.setOrientation(LinearLayout.VERTICAL);
+            col.setId(colId);
+            col.setTag(new String("Col" + colId));
+            colIds.add(colId);
+            //colId = colId + 10000;
+            colId++;
             cols.addView(col);
+
+            // Add the timezone label
+            TextView zoneLabel = new TextView(getActivity());
+            zoneLabel.setText(zone);
+            zoneLabel.setTextSize(12);
+            zoneLabel.setGravity(Gravity.CENTER);
+            zoneLabel.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
+            zoneLabel.setRotation(90);
+            cols.addView(zoneLabel);
+
 
             // Get the current time
             OffsetDateTime timeStamp = OffsetDateTime.now(ZoneId.of(zone));
             OffsetDateTime timeStampMinus24 = timeStamp.minusDays(1);
             OffsetDateTime timeStampPlus24 = timeStamp.plusDays(1);
+            //OffsetDateTime timeStampPlus24 = timeStamp;
             OffsetDateTime timeIndex = timeStampMinus24;
 
             while(timeIndex.isBefore(timeStampPlus24)) {
@@ -105,12 +115,73 @@ public class OverlaysWhiteboardFragment extends Fragment implements View.OnClick
                     hour = String.valueOf(timeIndex.getHour());
                 }
 
+                Integer hourFlag = commonTimes.get(hourId);
+
+                // If the current hour is within a reasonable meeting time range then add it to
+                // the common times array
+                if(timeIndex.getHour() >= 6 && timeIndex.getHour() <= 22) {
+
+                    // If not previously initialised then set to 0
+                    if(hourFlag == null) {
+                        commonTimes.put(hourId,0);
+                    }
+
+                }
+                else {
+                    // If not previously initialised then set to 0
+                    if(hourFlag == null) {
+                        commonTimes.put(hourId,1);
+                    }
+                    else {
+                        commonTimes.put(hourId,++hourFlag);
+                    }
+                }
+
+                // If the current hour is midnight then add a divider above the current text view
+                /*
+                if(hour.equals("00")) {
+                    int hrHeight = (int) getResources().getDisplayMetrics().density * 2;
+                    View hr = new View(getContext());
+                    hr.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, hrHeight));
+                    hr.setBackgroundColor(Color.parseColor("#FF0000"));
+                    col.addView(hr);
+                }
+                */
+
                 textView.setText(hour);
                 textView.setTextSize(12);
                 textView.setGravity(Gravity.CENTER);
                 textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                 col.addView(textView);
                 timeIndex = timeIndex.plusHours(1);
+            }
+
+        }
+
+
+        // Loop through the common times and if highlight any common times across all time zones
+        Set set = commonTimes.entrySet();
+        Iterator i = set.iterator();
+        Integer key;
+        Integer value;
+        while(i.hasNext()) {
+            Map.Entry me = (Map.Entry)i.next();
+            key = (Integer) me.getKey();
+            value = (Integer) me.getValue();
+
+            // If the current time index is common across all zones then highlight the time
+            if(value == 0) {
+                for(int k = 0; k < colIds.size(); k++) {
+                    //cols.findViewById(k).findViewById(k + key).setBackgroundColor(Color.parseColor("#00FF00"));
+                    //LinearLayout currCol = (LinearLayout) cols.findViewById(colIds.get(k));
+                    LinearLayout currCol = (LinearLayout) cols.findViewWithTag(new String("Col" + colIds.get(k)));
+                    //LinearLayout currCol = (LinearLayout) cols.getChildAt(k);
+                    TextView currHour = (TextView) currCol.getChildAt(key);
+                    currHour.setBackgroundColor(Color.parseColor("#00FF00"));
+
+
+
+                }
             }
 
         }
