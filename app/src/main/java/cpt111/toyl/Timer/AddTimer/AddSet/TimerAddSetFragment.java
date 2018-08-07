@@ -1,4 +1,4 @@
-package cpt111.toyl.Timer.AddTimer;
+package cpt111.toyl.Timer.AddTimer.AddSet;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,29 +17,32 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import cpt111.toyl.MainActivity;
 import cpt111.toyl.R;
-import cpt111.toyl.Timer.AddTimer.AddSet.TimerAddSetFragment;
 import cpt111.toyl.Timer.AddTimer.AddSubTimer.TimerLengthDialog;
 import cpt111.toyl.Timer.Home.TimerListFragment;
 import cpt111.toyl.Timer.Model.AbstractTimer;
 import cpt111.toyl.Timer.Model.CompoundTimer;
-import cpt111.toyl.Timer.Model.Set;
 import cpt111.toyl.Timer.Model.SimpleTimer;
-
+import cpt111.toyl.Timer.AddTimer.TimerAddListRecyclerViewAdapter;
 
 import static android.support.v7.widget.RecyclerView.VERTICAL;
 import static java.lang.Integer.parseInt;
 
+public class TimerAddSetFragment extends Fragment implements TimerLengthDialog.OnInputSelected {
 
-public class TimerAddFragment extends Fragment implements TimerLengthDialog.OnInputSelected, TimerAddSetFragment.OnSavedSet {
 
-    // list of timers that will be added to compound timer being created
-    private ArrayList<AbstractTimer> listOfTimersToAdd = new ArrayList<>();
+    public interface OnSavedSet {
+        void saveSet(String name, int repetitions, List<SimpleTimer> timers);
+    }
 
+    public OnSavedSet onSavedSet;
+
+
+    // list of timers that will be added to the set
+    private List<SimpleTimer> listOfTimersToAdd = new ArrayList<>();
     // items in form
     private EditText timerName;
     private EditText repetitions;
@@ -47,11 +50,12 @@ public class TimerAddFragment extends Fragment implements TimerLengthDialog.OnIn
     private Button addSetButton;
     private Button saveTimer;
 
+
     // listener
     private TimerListFragment.OnListFragmentInteractionListener mListener;
 
     // mandatory constructor
-    public TimerAddFragment() {
+    public TimerAddSetFragment() {
     }
 
 
@@ -71,6 +75,9 @@ public class TimerAddFragment extends Fragment implements TimerLengthDialog.OnIn
         // set up UI Components
         setUpUIComponents(view);
 
+        // hide add set button as not used for this view
+        addSetButton.setVisibility(View.INVISIBLE);
+
         // set up recycler view adapter
         setUpAdapter(view, context);
 
@@ -82,23 +89,15 @@ public class TimerAddFragment extends Fragment implements TimerLengthDialog.OnIn
             }
         });
 
-
-        // add set button listener
-        addSetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addSet();
-            }
-        });
-
-
         // save button button listener
         saveTimer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveCompoundTimer();
+                saveSet();
             }
         });
+
+        getActivity().setTitle("Add Set");
 
          return view;
     }
@@ -106,6 +105,13 @@ public class TimerAddFragment extends Fragment implements TimerLengthDialog.OnIn
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+
+        try {
+            onSavedSet = (OnSavedSet) getTargetFragment();
+        } catch (ClassCastException e) {
+            //TODO: change it to a proper error log
+            System.out.println("Error attaching dialog");
+        }
     }
 
     @Override
@@ -123,16 +129,15 @@ public class TimerAddFragment extends Fragment implements TimerLengthDialog.OnIn
         // set layout
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         // set adapter
-        recyclerView.setAdapter(new TimerAddListRecyclerViewAdapter(listOfTimersToAdd, mListener));
+        recyclerView.setAdapter(new TimerAddSetRecyclerViewAdapter(listOfTimersToAdd, mListener));
     }
 
     // link UI components to fragment
     public void setUpUIComponents(View view) {
         timerName = view.findViewById(R.id.add_timer_name);
+        timerName.setHint("Set Name");
         addSubTimerButton = view.findViewById(R.id.add_sub_timer);
-
         addSetButton = view.findViewById(R.id.add_set);
-
         saveTimer = view.findViewById(R.id.timer_add_save);
         repetitions = view.findViewById(R.id.repetitions);
     }
@@ -142,37 +147,26 @@ public class TimerAddFragment extends Fragment implements TimerLengthDialog.OnIn
         TimerLengthDialog dialog = new TimerLengthDialog();
         // set this as target fragment so the info can be sent from the dialog
         // request code can be any number, apparently
-        dialog.setTargetFragment(TimerAddFragment.this, 1);
+        dialog.setTargetFragment(TimerAddSetFragment.this, 1);
         dialog.show(getFragmentManager(), "TimerLengthDialog");
     }
 
-
-    // Add set functionality
-    public void addSet() {
-        TimerAddSetFragment fragment = new TimerAddSetFragment();
-//        TimerLengthDialog dialog = new TimerLengthDialog();
-        // set this as target fragment so the info can be sent from the dialog
-        // request code can be any number, apparently
-        fragment.setTargetFragment(TimerAddFragment.this, 1);
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).addToBackStack(null).commit();
-        //fragment.show(getFragmentManager(), "TimerLengthDialog");
-    }
-
-
     // save compound timer functionality
-    public void saveCompoundTimer() {
+    public void saveSet() {
+
+        onSavedSet.saveSet(timerName.getText().toString(), parseInt(repetitions.getText().toString()), listOfTimersToAdd);
         // data validation
-        if(validData()){
-            MainActivity activity = (MainActivity) getActivity();
-
-
-            CompoundTimer toAdd = new CompoundTimer(timerName.getText().toString(), parseInt(repetitions.getText().toString()), listOfTimersToAdd);
-
-            activity.listOfTimers.addCompoundTimer(toAdd);
-
-            // go back to timers list
-            activity.getSupportFragmentManager().popBackStackImmediate();
-        }
+//        if(validData()){
+//            MainActivity activity = (MainActivity) getActivity();
+//
+//            CompoundTimer toAdd = new CompoundTimer(timerName.getText().toString(), parseInt(repetitions.getText().toString()), listOfTimersToAdd);
+//            activity.listOfTimers.addCompoundTimer(toAdd);
+//
+//            // go back to timers list
+////            activity.getSupportFragmentManager().popBackStackImmediate();
+//        }
+        getActivity().getSupportFragmentManager().popBackStackImmediate();
+        System.out.println("Set will be saved");
     }
 
     // validate data before saving
@@ -214,14 +208,9 @@ public class TimerAddFragment extends Fragment implements TimerLengthDialog.OnIn
 
         // add subtimer to list of timers to be added to the compound timer
         listOfTimersToAdd.add(new SimpleTimer(name, length));
+        System.out.println("Timer size" + listOfTimersToAdd.size());
     }
 
-
-    @Override
-    public void saveSet(String name, int repetitions, List<SimpleTimer> timers) {
-        // add set to list of timers to be added to the compound timer
-        listOfTimersToAdd.add(new Set(name, timers, repetitions));
-    }
 
 }
 
