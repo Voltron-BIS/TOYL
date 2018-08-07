@@ -55,6 +55,7 @@ public class OverlaysWhiteboardFragment extends Fragment implements View.OnClick
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         /*
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
