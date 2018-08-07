@@ -6,31 +6,61 @@
     tools:context=".Timer.ViewTimer.TimerViewFragment">
 
     <TextView
+        android:id="@+id/current_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        tools:text = "TEXT" />
+
+    <TextView
         android:id="@+id/countdown_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/current_timer"
+        android:layout_centerHorizontal="true"
         tools:text = "10:00"
         android:textSize="50sp" />
 
-    <Button
-        android:id="@+id/timer_start_button"
+    <TextView
+        android:id="@+id/next_timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="90dp"
-        android:text="Start" />
+        android:layout_below="@id/countdown_text"
+        android:layout_centerHorizontal="true"
+        tools:text = "TEXT" />
 
-    <Button
-        android:id="@+id/timer_reset_button"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/timer_start_button"
-        android:layout_marginStart="96dp"
-        android:text="Reset"
-        android:visibility="invisible"
-        tools:visibility="visible" />
+        android:layout_below="@id/next_timer"
+        android:id="@+id/button_layout">
+
+        <Button
+            android:id="@+id/timer_start_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/timer_reset_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset"
+            android:visibility="invisible"
+            tools:visibility="visible"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/subtimers_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_layout"
+        tools:listitem="@layout/fragment_timerlist">
+
+    </android.support.v7.widget.RecyclerView>
 
 
 

@@ -88,7 +88,7 @@ public class TimerLengthDialog extends DialogFragment {
 
         // timer is 00:00:00
         if(length == 0) {
-            displayToast("Timer length cannot be zero");
+            displayToast("SimpleTimer length cannot be zero");
             return false;
         }
         return true;

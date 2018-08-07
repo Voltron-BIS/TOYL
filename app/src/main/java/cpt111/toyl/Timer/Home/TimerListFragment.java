@@ -15,15 +15,11 @@ import android.view.ViewGroup;
 
 import cpt111.toyl.MainActivity;
 import cpt111.toyl.R;
-import cpt111.toyl.Timer.AddTimer.TimerSelectTypeDialog;
+import cpt111.toyl.Timer.AddTimer.TimerAddFragment;
 
 import static android.support.v7.widget.RecyclerView.VERTICAL;
 
 public class TimerListFragment extends Fragment {
-
-    //private ArrayList<AbstractTimer> list;
-
-
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -80,7 +76,6 @@ public class TimerListFragment extends Fragment {
             recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
         }
         // set adapter
-        //recyclerView.setAdapter(new TimerListRecyclerViewAdapter(mTimerNames, mTimerLengths, mListener));
         recyclerView.setAdapter(new TimerListRecyclerViewAdapter(activity.listOfTimers.getTimers(), mListener));
 
         // click action on button to add timer
@@ -90,14 +85,9 @@ public class TimerListFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                TimerSelectTypeDialog dialog = new TimerSelectTypeDialog();
-                dialog.show(getFragmentManager(), "TimerSelectTypeDialog");
-//
-//                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-//                //TODO: Testing with existing fragment but need new one... if it works
-//
-////                Fragment myFragment = new TimerAddFragment();
-////                activity.getSupportFragmentManager().beginTransaction().replace(R.id.container, myFragment).addToBackStack(null).commit();
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                Fragment myFragment = new TimerAddFragment();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.container, myFragment).addToBackStack(null).commit();
             }
         });
 

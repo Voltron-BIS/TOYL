@@ -1,12 +1,8 @@
 package cpt111.toyl.Timer;
 
-import android.os.CountDownTimer;
-
 import java.util.ArrayList;
 
-import cpt111.toyl.Timer.Model.AbstractTimer;
 import cpt111.toyl.Timer.Model.CompoundTimer;
-import cpt111.toyl.Timer.Model.Timer;
 
 public class Dummy_TimerTempData {
 
@@ -38,7 +34,7 @@ TODO: What is next?
 - Set up add simple timer
 - Set up view timer
 - Set up running timer test
-- Timer likely to be split into an abstract class with 2 children (timer/stopwatch)
+- SimpleTimer likely to be split into an abstract class with 2 children (timer/stopwatch)
 - ArrayList to be of type AbstractTimer and then instanceOf will be used to separate implementation
 
 /// New todo

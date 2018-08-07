@@ -1,4 +1,5 @@
-package cpt111.toyl.Timer.AddTimer;
+package cpt111.toyl.Timer.AddTimer.AddSet;
+
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,23 +7,21 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import cpt111.toyl.R;
 import cpt111.toyl.Timer.Home.TimerListFragment.OnListFragmentInteractionListener;
 import cpt111.toyl.Timer.Model.AbstractTimer;
 import cpt111.toyl.Timer.Model.SimpleTimer;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 // adapter type is the class created at the bottom of this file
-public class TimerAddListRecyclerViewAdapter extends RecyclerView.Adapter<TimerAddListRecyclerViewAdapter.ViewHolder> {
+public class TimerAddSetRecyclerViewAdapter extends RecyclerView.Adapter<TimerAddSetRecyclerViewAdapter.ViewHolder> {
 
-    private List<AbstractTimer> timerList;
-    private Integer type = 1; // TODO 1 for timer, hypothetically, 2 for stopwatch? need to change when implementing stopwatch
+    private List<SimpleTimer> timerList;
     private final OnListFragmentInteractionListener mListener;
 
-    public TimerAddListRecyclerViewAdapter(List<AbstractTimer> timerList, OnListFragmentInteractionListener listener) {
+    public TimerAddSetRecyclerViewAdapter(List<SimpleTimer> timerList, OnListFragmentInteractionListener listener) {
         this.timerList = timerList;
         this.mListener = listener;
     }
@@ -39,10 +38,8 @@ public class TimerAddListRecyclerViewAdapter extends RecyclerView.Adapter<TimerA
 
         holder.timerName.setText(timerList.get(position).getName().toString());
 
-        if (type == 1) {
-            AbstractTimer timer = (AbstractTimer) timerList.get(position);
-            holder.timerLength.setText(getDurationBreakdown(timer.getLength()));
-        }
+        SimpleTimer timer = timerList.get(position);
+        holder.timerLength.setText(getDurationBreakdown(timer.getLength()));
 
         // TODO to be changed to editing the timer, not viewing
 
