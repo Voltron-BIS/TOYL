@@ -42,14 +42,6 @@ public class OverlaysWhiteboardFragment extends Fragment implements View.OnClick
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment OverlaysWhiteboardFragment.
-     */
     // TODO: Rename and change types and number of parameters
     public static OverlaysWhiteboardFragment newInstance(String param1, String param2) {
         OverlaysWhiteboardFragment fragment = new OverlaysWhiteboardFragment();
@@ -101,10 +93,21 @@ public class OverlaysWhiteboardFragment extends Fragment implements View.OnClick
             col.setBackgroundResource(R.drawable.border);
             col.setOrientation(LinearLayout.VERTICAL);
             col.setId(colId);
+            col.setTag(new String("Col" + colId));
             colIds.add(colId);
             //colId = colId + 10000;
             colId++;
             cols.addView(col);
+
+            // Add the timezone label
+            TextView zoneLabel = new TextView(getActivity());
+            zoneLabel.setText(zone);
+            zoneLabel.setTextSize(12);
+            zoneLabel.setGravity(Gravity.CENTER);
+            zoneLabel.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
+            zoneLabel.setRotation(90);
+            cols.addView(zoneLabel);
+
 
             // Get the current time
             OffsetDateTime timeStamp = OffsetDateTime.now(ZoneId.of(zone));
@@ -188,9 +191,13 @@ public class OverlaysWhiteboardFragment extends Fragment implements View.OnClick
             if(value == 0) {
                 for(int k = 0; k < colIds.size(); k++) {
                     //cols.findViewById(k).findViewById(k + key).setBackgroundColor(Color.parseColor("#00FF00"));
-                    LinearLayout currCol = (LinearLayout) cols.getChildAt(k);
+                    //LinearLayout currCol = (LinearLayout) cols.findViewById(colIds.get(k));
+                    LinearLayout currCol = (LinearLayout) cols.findViewWithTag(new String("Col" + colIds.get(k)));
+                    //LinearLayout currCol = (LinearLayout) cols.getChildAt(k);
                     TextView currHour = (TextView) currCol.getChildAt(key);
                     currHour.setBackgroundColor(Color.parseColor("#00FF00"));
+
+
 
                 }
             }
