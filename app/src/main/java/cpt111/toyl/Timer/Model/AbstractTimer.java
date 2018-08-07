@@ -1,5 +1,6 @@
 package cpt111.toyl.Timer.Model;
 
+
 import com.bignerdranch.expandablerecyclerview.model.Parent;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public abstract class AbstractTimer implements Parent<SimpleTimer> {
         this.name = name;
     }
 
+
     public void setLength(long length) {
         this.length = length;
     }
@@ -45,3 +47,6 @@ public abstract class AbstractTimer implements Parent<SimpleTimer> {
 
 
 }
+
+
+

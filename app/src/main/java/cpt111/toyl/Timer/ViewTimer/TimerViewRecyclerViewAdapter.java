@@ -1,5 +1,6 @@
 package cpt111.toyl.Timer.ViewTimer;
 
+
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -54,6 +55,7 @@ public class TimerViewRecyclerViewAdapter extends ExpandableRecyclerAdapter<Abst
     }
 
 
+
     public String getDurationBreakdown(long millis) {
 
         long hours = TimeUnit.MILLISECONDS.toHours(millis);
@@ -65,7 +67,6 @@ public class TimerViewRecyclerViewAdapter extends ExpandableRecyclerAdapter<Abst
         return String.format("%02d:%02d:%02d", hours, minutes, seconds);
 
     }
-
 
     public class AbstractTimerHolder extends ParentViewHolder {
 
@@ -111,21 +112,5 @@ public class TimerViewRecyclerViewAdapter extends ExpandableRecyclerAdapter<Abst
         }
     }
 
-//
-//    // where we set up the view for the "list"
-//    public class ViewHolder extends RecyclerView.ViewHolder {
-//
-//        View mView;
-//        TextView timerName;
-//        TextView timerLength;
-//        RelativeLayout parentLayout;
-//
-//        public ViewHolder(View view) {
-//            super(view);
-//            mView = view;
-//            timerName = view.findViewById(R.id.item_number);
-//            timerLength = view.findViewById(R.id.content);
-//            parentLayout = view.findViewById(R.id.timer_list_parent);
-//        }
-//    }
+
 }

@@ -1,5 +1,10 @@
 package cpt111.toyl.Timer.AddTimer;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,20 +14,25 @@ import android.widget.TextView;
 import cpt111.toyl.R;
 import cpt111.toyl.Timer.Home.TimerListFragment.OnListFragmentInteractionListener;
 import cpt111.toyl.Timer.Model.AbstractTimer;
+
 import cpt111.toyl.Timer.Model.SimpleTimer;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
 import java.util.concurrent.TimeUnit;
 
 // adapter type is the class created at the bottom of this file
 public class TimerAddListRecyclerViewAdapter extends RecyclerView.Adapter<TimerAddListRecyclerViewAdapter.ViewHolder> {
+
 
     private List<AbstractTimer> timerList;
     private Integer type = 1; // TODO 1 for timer, hypothetically, 2 for stopwatch? need to change when implementing stopwatch
     private final OnListFragmentInteractionListener mListener;
 
     public TimerAddListRecyclerViewAdapter(List<AbstractTimer> timerList, OnListFragmentInteractionListener listener) {
+
         this.timerList = timerList;
         this.mListener = listener;
     }
@@ -40,7 +50,9 @@ public class TimerAddListRecyclerViewAdapter extends RecyclerView.Adapter<TimerA
         holder.timerName.setText(timerList.get(position).getName().toString());
 
         if (type == 1) {
+
             AbstractTimer timer = (AbstractTimer) timerList.get(position);
+
             holder.timerLength.setText(getDurationBreakdown(timer.getLength()));
         }
 
@@ -51,7 +63,9 @@ public class TimerAddListRecyclerViewAdapter extends RecyclerView.Adapter<TimerA
 //            public void onClick(View view) {
 //                AppCompatActivity activity = (AppCompatActivity) view.getContext();
 //
+
 //                // Opening new fragment (SimpleTimer view)
+
 //                Fragment myFragment = new TimerViewFragment();
 //                Bundle bundle = new Bundle();
 //                bundle.putString("Name", timerList.get(position).getName().toString());

@@ -5,8 +5,10 @@ import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +52,7 @@ public class TimerViewFragment extends Fragment {
     private int activeSubTimerPosition;
   //  private OnListFragmentInteractionListener mListener;
 
+
     private CountDownTimer mCountDownTimer;
     private boolean mTimerRunning;
     private int position;
@@ -91,11 +94,13 @@ public class TimerViewFragment extends Fragment {
             activeSubTimer = ((Set)activeAbstractTimer).getListOfTimers().get(0);
         }
 
+
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
 
         // inflate view
         View view = inflater.inflate(R.layout.fragment_timer_view, container, false);
@@ -112,6 +117,7 @@ public class TimerViewFragment extends Fragment {
         updateCountDownText();
 
         // OnClickListener for Pause button
+
         mButtonStartPause.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -119,12 +125,16 @@ public class TimerViewFragment extends Fragment {
                 if (mTimerRunning) {
                     pauseTimer();
                 } else {
+
                     startCompoundTimer();
+
                 }
             }
         });
 
+
         // OnClickListener for Reset Button
+
         mButtonReset.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -132,6 +142,7 @@ public class TimerViewFragment extends Fragment {
                 resetTimer();
             }
         });
+
         return view;
     }
 
@@ -154,12 +165,15 @@ public class TimerViewFragment extends Fragment {
             public void onTick(long millisUntilFinished) {
                 mTimeLeftInMillis = millisUntilFinished;
                 updateCountDownText();
+
                 //timer.getListOfTimers().get(0).setRemainingTime(millisUntilFinished);
                 //adapter.notifyParentChanged(0);
+
             }
 
             @Override
             public void onFinish() {
+
                 currentTimerTextView.setVisibility(View.INVISIBLE);
                 nextTimerTextView.setVisibility(View.INVISIBLE);
 
@@ -178,6 +192,7 @@ public class TimerViewFragment extends Fragment {
         mButtonStartPause.setText("pause");
         mButtonReset.setVisibility(View.INVISIBLE);
     }
+
 
 
     private void setUpUIComponents(View view) {
@@ -299,6 +314,7 @@ public class TimerViewFragment extends Fragment {
             activeSubTimer = ((Set)activeAbstractTimer).getListOfTimers().get(0);
         }
         updateCountDownText();
+
 
     }
 

@@ -6,6 +6,7 @@
     tools:context=".Timer.ViewTimer.TimerViewFragment">
 
     <TextView
+
         android:id="@+id/current_timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -61,6 +62,7 @@
         tools:listitem="@layout/fragment_timerlist">
 
     </android.support.v7.widget.RecyclerView>
+
 
 
 

@@ -1,6 +1,5 @@
 package cpt111.toyl.Timer.Model;
 
-
 import java.util.List;
 
 public class CompoundTimer {
@@ -15,8 +14,6 @@ public class CompoundTimer {
         this.repeats = repeats;
         this.listOfTimers = listOfTimers;
     }
-
-
 
 
     public String getName() {
@@ -36,6 +33,7 @@ public class CompoundTimer {
     }
 
     public void setListOfTimers(List<AbstractTimer> listOfTimers) {
+
         this.listOfTimers = listOfTimers;
     }
 
@@ -43,8 +41,10 @@ public class CompoundTimer {
         listOfTimers.add(timer);
     }
 
+
     public List<AbstractTimer> getListOfTimers() {
         return listOfTimers;
     }
+
 
 }

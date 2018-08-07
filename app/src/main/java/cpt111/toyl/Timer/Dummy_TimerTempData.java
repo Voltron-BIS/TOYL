@@ -1,8 +1,10 @@
 package cpt111.toyl.Timer;
 
+
 import java.util.ArrayList;
 
 import cpt111.toyl.Timer.Model.CompoundTimer;
+
 
 public class Dummy_TimerTempData {
 
@@ -34,7 +36,9 @@ TODO: What is next?
 - Set up add simple timer
 - Set up view timer
 - Set up running timer test
+
 - SimpleTimer likely to be split into an abstract class with 2 children (timer/stopwatch)
+
 - ArrayList to be of type AbstractTimer and then instanceOf will be used to separate implementation
 
 /// New todo
