@@ -35,6 +35,12 @@ public class SimplerTimerEntity
 	@ColumnInfo(name = "repeat")
 	private int repeats;
 	
+	// This constructor is needed since the other constructor doesn't have all the database fields present, which is an error.
+	public SimplerTimerEntity()
+	{
+		// Hehe I do nothing, don't use me. :)
+	}
+	
 	public SimplerTimerEntity(String name, String description, boolean isCountdownTimer, long length, int repeats)
 	{
 		this.title = name;
