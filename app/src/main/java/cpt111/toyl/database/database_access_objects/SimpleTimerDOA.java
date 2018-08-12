@@ -1,5 +1,6 @@
 package cpt111.toyl.database.database_access_objects;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
@@ -20,5 +21,5 @@ public interface SimpleTimerDOA
 	void deleteAll();
 	
 	@Query("SELECT * FROM simple_timer ORDER BY timer_id ASC")
-	List<SimplerTimerEntity> getAllTimers();
+	LiveData<List<SimplerTimerEntity>> getAllTimers();
 }
