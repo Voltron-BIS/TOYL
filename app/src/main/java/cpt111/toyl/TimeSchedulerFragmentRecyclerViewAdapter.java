@@ -6,23 +6,27 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 
 public class TimeSchedulerFragmentRecyclerViewAdapter extends RecyclerView.Adapter<TimeSchedulerFragmentRecyclerViewAdapter.ViewHolder> {
 
     //Variables
     //-----------------------------------------------
     private String[] mTime;
-    private String[] mTask;
+    private String[] mName;
+    private String[] mCategory;
+    private String[] mDescription;
     private Context mContext;
 
     //Constructor
     //-----------------------------------------------
-    public TimeSchedulerFragmentRecyclerViewAdapter(Context mContext, String[] mTime, String[] mTask) {
+    public TimeSchedulerFragmentRecyclerViewAdapter(Context mContext,String[] mTime, String[] mName,String[] mCategory, String[] mDescription){
         this.mTime = mTime;
-        this.mTask = mTask;
+        this.mName = mName;
+        this.mCategory = mCategory;
+        this.mDescription = mDescription;
         this.mContext = mContext;
     }
 
@@ -37,7 +41,7 @@ public class TimeSchedulerFragmentRecyclerViewAdapter extends RecyclerView.Adapt
     //-----------------------------------------------
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.mtaskname.setText(mTask[position]);
+        holder.mtaskname.setText(mName[position]);
         holder.mt_s_time.setText(mTime[position]);
 
     }
