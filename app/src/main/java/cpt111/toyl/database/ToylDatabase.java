@@ -14,7 +14,7 @@ public abstract class ToylDatabase extends RoomDatabase
 	public abstract SimpleTimerDOA simpleTimerDOA();
 	private static ToylDatabase DB_INSTANCE;
 	
-	static ToylDatabase getDbInstance(final Context context)
+	public static ToylDatabase getDbInstance(final Context context)
 	{
 		if (DB_INSTANCE == null) {
 			synchronized (ToylDatabase.class) {
