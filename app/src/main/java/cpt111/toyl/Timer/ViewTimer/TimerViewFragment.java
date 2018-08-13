@@ -228,7 +228,7 @@ public class TimerViewFragment extends Fragment {
 //        } else {
 //            // if set had started execution (??)
 //            if (((Set) activeAbstractTimer).getStartedExecution()) {
-//                // check if current position of subtimer is last subtimer in set
+//                // check if current  position of subtimer is last subtimer in set
 //                if (((Set) activeAbstractTimer).getListOfTimers().size() - 1 == activeSubTimerPosition) {
 //                    ((Set) activeAbstractTimer).setCompletedRepeats(((Set) activeAbstractTimer).getCompletedRepeats() + 1);
 //                    // check if the set has finished all the repetitions

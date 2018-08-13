@@ -39,6 +39,8 @@
     <string name="tasktracker_category_description">Category Description</string>
     <string name="tasktracker_stopwatch_start">Start</string>
     <string name="tasktracker_stopwatch_pause">Pause</string>
+    <string name="tasktracker_savebutton">Save</string>
+    <string name="tasktracker_cancelbutton">Cancel</string>
 
 
 </resources>

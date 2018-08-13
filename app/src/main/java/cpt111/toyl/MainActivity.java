@@ -10,8 +10,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import cpt111.toyl.Tasks.TaskTrackerListFragment;
-
+import cpt111.toyl.Tasks.TaskTrackerFragment;
+import cpt111.toyl.Tasks.DummyTaskData;
 import cpt111.toyl.Timer.Dummy_TimerTempData;
 import cpt111.toyl.Timer.Home.TimerListFragment;
 
@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity
 	// TODO: temp data to simulate DB (timers), public to avoid cluttering this class with
     // methods as it will be moved from here
 	public Dummy_TimerTempData listOfTimers;
+	public DummyTaskData listOfTasks;
 
 	private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener()
 	{
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity
 
                 case R.id.navigation_tasks:
                     setTitle(R.string.title_tasks);
-                    selectedFragment = new TaskTrackerListFragment();
+                    selectedFragment = new TaskTrackerFragment();
                     break;
 
 				case R.id.navigation_scheduler:
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 
 		listOfTimers = new Dummy_TimerTempData();
+		listOfTasks = new DummyTaskData();
 
 		setContentView(R.layout.activity_main);
 
