@@ -11,7 +11,7 @@
         android:layout_height="69dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="210dp"
         android:hint="Description of selected task."
         android:textAlignment="center"
         android:textSize="16sp"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="135dp"
         android:text="Category:"
         android:textColor="@color/design_default_color_primary_dark"
         android:textSize="18sp"
@@ -106,7 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="95dp"
         android:text="Name:"
         android:textColor="@color/design_default_color_primary_dark"
         android:textSize="18sp"
@@ -125,7 +125,7 @@
         android:layout_height="25dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="95dp"
         android:hint="Task 1"
         android:textAlignment="textEnd"
         android:textSize="16sp"
@@ -140,7 +140,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="175dp"
         android:text="Description:"
         android:textColor="@color/design_default_color_primary_dark"
         android:textSize="18sp"
@@ -157,7 +157,7 @@
         android:layout_height="25dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="135dp"
         android:hint="Category 1"
         android:textAlignment="textEnd"
         android:textSize="16sp"
@@ -167,47 +167,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/test1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="248dp"
-        android:text="test task 1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/test2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="248dp"
-        android:text="test task 2"
-        app:layout_constraintEnd_toStartOf="@+id/test3"
-        app:layout_constraintHorizontal_bias="0.471"
-        app:layout_constraintStart_toEndOf="@+id/test1"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/test3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="248dp"
-        android:text="test task 3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/scheduler_timeline"
         android:layout_width="414dp"
         android:layout_height="387dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/test1"
         app:layout_constraintVertical_bias="1.0">
 
     </android.support.v7.widget.RecyclerView>

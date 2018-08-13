@@ -1,6 +1,7 @@
 package cpt111.toyl;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -15,7 +16,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -31,12 +31,7 @@ public class TimeSchedulerFragment extends Fragment {
     private TextView mDisplaytask_name;
     private TextView mDisplaytask_category;
     private TextView mDisplaydescription;
-
-    //test Task info
-    //-----------------------------------------------
-    private Button mTestbutton1;
-    private Button mTestbutton2;
-    private Button mTestbutton3;
+    private Context mContext;
     private RecyclerView mRecyclerView;
 
 
@@ -65,10 +60,6 @@ public class TimeSchedulerFragment extends Fragment {
         mDisplaytask_category = rootView.findViewById(R.id.task_category);
         mDisplaydescription = rootView.findViewById(R.id.task_description);
         mRecyclerView = rootView.findViewById(R.id.scheduler_timeline);
-        // TODO: remove buttons for testing.
-        mTestbutton1 = rootView.findViewById(R.id.test1);
-        mTestbutton2 = rootView.findViewById(R.id.test2);
-        mTestbutton3 = rootView.findViewById(R.id.test3);
 
 
         //Get current date and set.
@@ -130,53 +121,50 @@ public class TimeSchedulerFragment extends Fragment {
             }
         };
 
-        //test Task info buttons
-        //-----------------------------------------------
-        mTestbutton1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Test_info task = Get_Test_Info(0);
-                mDisplaytask_name.setText(task.task_Name);
-                mDisplaytask_category.setText(task.task_Category);
-                mDisplaydescription.setText(task.task_Description);
-            }
-        });
-
-        mTestbutton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Test_info task = Get_Test_Info(1);
-                mDisplaytask_name.setText(task.task_Name);
-                mDisplaytask_category.setText(task.task_Category);
-                mDisplaydescription.setText(task.task_Description);
-            }
-        });
-
-        mTestbutton3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Test_info task = Get_Test_Info(2);
-                mDisplaytask_name.setText(task.task_Name);
-                mDisplaytask_category.setText(task.task_Category);
-                mDisplaydescription.setText(task.task_Description);
-            }
-        });
-
 
         // Recyclerview
         //-----------------------------------------------
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        //Recyclerview Test data
-        String[] Time = {"1","2","3","4","5","6","7","8","9","10"};
-        String[] Task = {"Task 1","","","Task 2","","Task 3","","","",""};
-        TimeSchedulerFragmentRecyclerViewAdapter adapter = new TimeSchedulerFragmentRecyclerViewAdapter(getContext(),Time,Task);
-        mRecyclerView.setAdapter(adapter);
+        //Recyclerview Test data is in place
+        Task_Data_Array task_data[] = Get_Test_Info();
+
+        //Data formating for recyclerview
+        String[] Time = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"};
+        String[] Name = {"","","","","","","","","","","","","","","","","","","","","","","",""};
+        String[] Category = {"","","","","","","","","","","","","","","","","","","","","","","",""};
+        String[] Description = {"","","","","","","","","","","","","","","","","","","","","","","",""};
+        int i = 0;
+        while (i<23){
+            if (task_data.length == 0) break;
+            if (task_data.length>i){
+                int j = 0;
+                while (j<23) {
+                    String item1 = task_data[i].task_Time;
+                    String item2 = Time[j];
+                    if (item1.equals(item2)) {
+                        Name[j] = task_data[i].task_Name;
+                        Category[j] = task_data[i].task_Category;
+                        Description[j] = task_data[i].task_Description;
+                        break;
+                    }
+                    else j = j + 1;
+                }
+            }
+            i = i + 1;
+        }
+
+        TimeSchedulerFragmentRecyclerViewAdapter mAdapter = new TimeSchedulerFragmentRecyclerViewAdapter(getContext(),Time,Name,Category,Description,rootView);
+        mRecyclerView.setAdapter(mAdapter);
 
         return rootView;
 
     }
+
+
+
+
 //function for setting day name
     private String Day(int day){
         String day_name = "";
@@ -209,12 +197,12 @@ public class TimeSchedulerFragment extends Fragment {
     //test Task info
     //-----------------------------------------------
 
-    public class Test_info {
+    public static class Task_Data_Array {
         public String task_Name;
         public String task_Category;
         public String task_Description;
-        public int task_Time;
-        Test_info(String task_Name, String task_Category, String task_Description, int task_Time)
+        public String task_Time;
+        Task_Data_Array(String task_Name, String task_Category, String task_Description, String task_Time)
         {
             this.task_Name = task_Name;
             this.task_Category = task_Category;
@@ -223,17 +211,47 @@ public class TimeSchedulerFragment extends Fragment {
         }
     }
 
-    private Test_info Get_Test_Info(int Task){
-        final Test_info[] test;
-        test = new Test_info[3];
+    private static Task_Data_Array[] Get_Test_Info(){
+        final Task_Data_Array[] test;
+        test = new Task_Data_Array[3];
 
-        test[0] = new Test_info("Test task 1","test 1", "Do a backflip ",1);
-        test[1] = new Test_info("Test task 2","test 2", "Do lots for frontflips ",4);
-        test[2] = new Test_info("Test task 3","tests 3", "do more sideflips ",8);
+        test[0] = new Task_Data_Array("Test task 1","test 1", "Do a backflip ","2");
+        test[1] = new Task_Data_Array("Test task 2","test 2", "Do lots for frontflips ","4");
+        test[2] = new Task_Data_Array("Test task 3","tests 3", "do more sideflips ","8");
 
 
-        return test[Task];
+        return test;
     }
+
+// called from adapter to set task info
+    public static void Set_D_values(String Time,View rootView){
+        TextView Displaytask_name;
+        TextView Displaytask_category;
+        TextView Displaydescription;
+        Displaytask_name = rootView.findViewById(R.id.task_name);
+        Displaytask_category = rootView.findViewById(R.id.task_category);
+        Displaydescription = rootView.findViewById(R.id.task_description);
+        Log.d(TAG, "Set_D_values: has been called the Position is: "+ Time);
+        Task_Data_Array test[] = Get_Test_Info();
+        int i = 0;
+        while (i<test.length){
+
+            if (Time.equals(test[i].task_Time)){
+                Displaytask_name.setText(test[i].task_Name);
+                Displaytask_category.setText(test[i].task_Category);
+                Displaydescription.setText(test[i].task_Description);
+                break;
+            }
+            else i = i +1;
+            }
+
+
+
+//        Task_Data_Array test[] = Get_Test_Info();
+
+
+    }
+
     //-----------------------------------------------
 
     //Test Timeline Data

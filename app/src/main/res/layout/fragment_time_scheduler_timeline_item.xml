@@ -4,13 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent"
+    android:layout_height="400dp"
     >
 
     <android.support.v7.widget.CardView
-        android:id="@+id/TimeLine"
+        android:id="@+id/TimeLine_item"
         android:layout_width="45dp"
-        android:layout_height="match_parent"
+        android:layout_height="400dp"
         app:cardElevation="3dp"
         android:layout_margin="2dp"
         app:cardCornerRadius="3dp"
@@ -26,9 +26,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:layout_alignParentStart="true"
-                android:background="@color/colorPrimary"
+                android:background="#95a5fb"
                 android:hint="Time"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@android:color/background_dark" />
 
             <TextView
                 android:id="@+id/t_s_r_taskname"
@@ -37,7 +38,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="172dp"
-                android:hint="Task"
+                android:hint="Empty"
                 android:rotation="-90"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark" />
