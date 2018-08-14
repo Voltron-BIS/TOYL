@@ -89,7 +89,7 @@ public class StatisticWhiteboardFragment extends Fragment {
             return 2;
         }
 
-      
+
         @Override
         public CharSequence getPageTitle(int position) {
             switch(position){
