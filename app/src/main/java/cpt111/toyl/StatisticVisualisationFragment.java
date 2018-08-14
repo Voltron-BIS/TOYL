@@ -4,21 +4,28 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.listener.ChartTouchListener;
+import com.github.mikephil.charting.listener.OnChartGestureListener;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 import java.util.ArrayList;
 
-public class StatisticVisualisationFragment extends android.support.v4.app.Fragment {
+public class StatisticVisualisationFragment extends android.support.v4.app.Fragment implements OnChartGestureListener {
 
     BarChart barChart;
+    OnChartGestureListener chartGestureListener;
+    MotionEvent me;
 
 
     @Nullable
@@ -34,11 +41,11 @@ public class StatisticVisualisationFragment extends android.support.v4.app.Fragm
         ArrayList<BarEntry> barEntries = new ArrayList<>();
         //for use with version 3.0.3
         //List<BarEntry> barEntries = new ArrayList<>();
-        barEntries.add(new BarEntry(34f,0));
-        barEntries.add(new BarEntry(44f,1));
-        barEntries.add(new BarEntry(55f,2));
-        barEntries.add(new BarEntry(24f,3));
-        barEntries.add(new BarEntry(14f,4));
+        barEntries.add(new BarEntry(34f, 0));
+        barEntries.add(new BarEntry(44f, 1));
+        barEntries.add(new BarEntry(55f, 2));
+        barEntries.add(new BarEntry(24f, 3));
+        barEntries.add(new BarEntry(14f, 4));
         BarDataSet barDataSet = new BarDataSet(barEntries, "Dates");
 
         ArrayList<String> theDates = new ArrayList<>();
@@ -49,8 +56,7 @@ public class StatisticVisualisationFragment extends android.support.v4.app.Fragm
         theDates.add("Recreation");
 
 
-
-        BarData theData = new BarData(theDates,barDataSet);
+        BarData theData = new BarData(theDates, barDataSet);
         barChart.setData(theData);
 
         /*for use with version 3.0.3
@@ -65,8 +71,60 @@ public class StatisticVisualisationFragment extends android.support.v4.app.Fragm
         l.setEnabled(false);
 
 
+        barChart = rootView.findViewById(R.id.bargraph);
+        barChart.setOnChartGestureListener(this);
+
+
         return rootView;
 
 
     }
+
+    @Override
+    public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+
+    }
+
+    @Override
+    public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+
+    }
+
+    @Override
+    public void onChartLongPressed(MotionEvent me) {
+
+    }
+
+    @Override
+    public void onChartDoubleTapped(MotionEvent me) {
+
+    }
+
+    public void onChartSingleTapped(MotionEvent me) {
+        displayToast("SINGLE TAP");
+    }
+
+    @Override
+    public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
+
+    }
+
+    @Override
+    public void onChartScale(MotionEvent me, float scaleX, float scaleY) {
+
+    }
+
+    @Override
+    public void onChartTranslate(MotionEvent me, float dX, float dY) {
+
+    }
+
+    public void displayToast(String text) {
+        Toast toast = Toast.makeText(getContext(), text, Toast.LENGTH_SHORT);
+        toast.show();
+    }
 }
+
+
+
+

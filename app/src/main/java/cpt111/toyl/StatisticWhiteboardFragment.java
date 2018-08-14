@@ -6,6 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,16 +15,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-
-
-
+import android.widget.Toast;
 
 
 public class StatisticWhiteboardFragment extends Fragment {
 
     private ViewPager mViewPager;
     private SectionsPagerAdapter mSectionsPagerAdapter;
+    Fragment fragment;
 
     public StatisticWhiteboardFragment() {
         // Required empty public constructor
@@ -32,8 +31,6 @@ public class StatisticWhiteboardFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @Override
@@ -64,7 +61,6 @@ public class StatisticWhiteboardFragment extends Fragment {
     }
 
 
-
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -89,7 +85,6 @@ public class StatisticWhiteboardFragment extends Fragment {
             return 2;
         }
 
-      
         @Override
         public CharSequence getPageTitle(int position) {
             switch(position){
