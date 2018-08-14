@@ -28,6 +28,15 @@ public class StatisticVisualisationFragment extends android.support.v4.app.Fragm
 
     BarChart barChart;
 
+    public StatisticVisualisationFragment(){
+
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
 
     @Nullable
     @Override
@@ -105,7 +114,7 @@ public class StatisticVisualisationFragment extends android.support.v4.app.Fragm
 
 
         //creates text to change
-        String statTitle = "DYNAMICLY LOADED DETAILS";
+        String statTitle = "STATISTICS CHANGED";
         String iCStr = "7";
         String sIStr = "8 mins";
         String lIStr = "2 hours";
