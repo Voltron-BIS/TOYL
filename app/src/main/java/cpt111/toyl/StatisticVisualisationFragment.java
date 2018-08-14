@@ -105,13 +105,24 @@ public class StatisticVisualisationFragment extends android.support.v4.app.Fragm
 
 
         //creates text to change
-            String first = "textG";
-            String last = "textG";
+        String statTitle = "DYNAMICLY LOADED DETAILS";
+        String iCStr = "7";
+        String sIStr = "8 mins";
+        String lIStr = "2 hours";
+        String tCStr = "45";
+        String tPVal = "11";
+        String aDVal = "47";
+
 
         //creates bundle to pass to next fragment
         Bundle bundle = new Bundle();
-        bundle.putString("FirstName",first);
-        bundle.putString("LastName",last);
+        bundle.putString("0",iCStr);
+        bundle.putString("1",sIStr);
+        bundle.putString("2",lIStr);
+        bundle.putString("3",tCStr);
+        bundle.putString("4",tPVal);
+        bundle.putString("5",aDVal);
+        bundle.putString("6",statTitle);
 
         //cretes fragment manager
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

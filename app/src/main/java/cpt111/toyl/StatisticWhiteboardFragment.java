@@ -6,7 +6,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -21,11 +20,10 @@ import android.widget.TextView;
 
 
 
-public class StatisticWhiteboardFragment extends Fragment implements View.OnClickListener {
+public class StatisticWhiteboardFragment extends Fragment {
 
     private ViewPager mViewPager;
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    Fragment fragment;
 
     public StatisticWhiteboardFragment() {
         // Required empty public constructor
@@ -65,15 +63,6 @@ public class StatisticWhiteboardFragment extends Fragment implements View.OnClic
 
     }
 
-    @Override
-    public void onClick(View v) {
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        Fragment fragment = new StatisticDisplayFragment();
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.replace(R.id.container, fragment).commit();
-
-    }
 
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {

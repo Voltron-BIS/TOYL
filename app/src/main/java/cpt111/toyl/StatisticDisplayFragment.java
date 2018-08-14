@@ -25,36 +25,44 @@ public class StatisticDisplayFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_statistic_display, container, false);
-        String firstName;
-        String lastName;
+        String iCStr,sIStr,lIStr,tCStr,tPVal,aDVal,statTitle;
+
 
         if (getArguments() != null) {
             //gets bundle
             Bundle bundle = getArguments();
 
+
             //extracts bundle content to strings
-            firstName = bundle.getString("FirstName");
-            lastName = bundle.getString("LastName");
+            iCStr = bundle.getString("0");
+            sIStr = bundle.getString("1");
+            lIStr = bundle.getString("2");
+            tCStr = bundle.getString("3");
+            tPVal = bundle.getString("4");
+            aDVal = bundle.getString("5");
+            statTitle = bundle.getString("6");
 
             //identifies textviews
-            TextView firstText = (TextView) rootView.findViewById(R.id.iCVal);
-            TextView lastText = (TextView) rootView.findViewById(R.id.sIVal);
+            TextView val1 = (TextView) rootView.findViewById(R.id.iCVal);
+            TextView val2 = (TextView) rootView.findViewById(R.id.sIVal);
+            TextView val3 = (TextView) rootView.findViewById(R.id.lIVal);
+            TextView val4 = (TextView) rootView.findViewById(R.id.tCVal);
+            TextView val5 = (TextView) rootView.findViewById(R.id.tPVal);
+            TextView val6 = (TextView) rootView.findViewById(R.id.aDVal);
+            TextView val7 = (TextView) rootView.findViewById(R.id.statTitle);
 
             //sets text
-            firstText.setText(firstName);
-            lastText.setText(lastName);
+            val1.setText(iCStr);
+            val2.setText(sIStr);
+            val3.setText(lIStr);
+            val4.setText(tCStr);
+            val5.setText(tPVal);
+            val6.setText(aDVal);
+            val7.setText(statTitle);
 
-        }
-        else{
-            displayToast("no args");
         }
 
         return rootView;
-    }
-
-    public void displayToast(String text) {
-        Toast toast = Toast.makeText(getContext(), text, Toast.LENGTH_SHORT);
-        toast.show();
     }
 
 }
