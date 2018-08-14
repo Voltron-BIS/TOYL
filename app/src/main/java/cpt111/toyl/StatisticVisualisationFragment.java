@@ -3,11 +3,14 @@ package cpt111.toyl;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -24,8 +27,6 @@ import java.util.ArrayList;
 public class StatisticVisualisationFragment extends android.support.v4.app.Fragment implements OnChartGestureListener {
 
     BarChart barChart;
-    OnChartGestureListener chartGestureListener;
-    MotionEvent me;
 
 
     @Nullable
@@ -102,6 +103,28 @@ public class StatisticVisualisationFragment extends android.support.v4.app.Fragm
 
     public void onChartSingleTapped(MotionEvent me) {
         displayToast("SINGLE TAP");
+
+        //creates text to change
+            String first = "text1";
+            String last = "text2";
+
+        //creates bundle to pass to next fragment
+        Bundle bundle = new Bundle();
+        bundle.putString("FirstName",first);
+        bundle.putString("LastName",last);
+
+        //cretes fragment manager
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+
+        //creates second fragment and sets arguments
+        StatisticDisplayFragment secondFragment = new StatisticDisplayFragment();
+        secondFragment.setArguments(bundle);
+
+        //sets fragment to be replaced and commits
+        fragmentTransaction.replace(R.id.bargraph,secondFragment);
+        fragmentTransaction.commit();
     }
 
     @Override
