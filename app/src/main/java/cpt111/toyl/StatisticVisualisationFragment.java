@@ -102,11 +102,11 @@ public class StatisticVisualisationFragment extends android.support.v4.app.Fragm
     }
 
     public void onChartSingleTapped(MotionEvent me) {
-        displayToast("SINGLE TAP");
+
 
         //creates text to change
-            String first = "text1";
-            String last = "text2";
+            String first = "textG";
+            String last = "textG";
 
         //creates bundle to pass to next fragment
         Bundle bundle = new Bundle();
@@ -123,7 +123,7 @@ public class StatisticVisualisationFragment extends android.support.v4.app.Fragm
         secondFragment.setArguments(bundle);
 
         //sets fragment to be replaced and commits
-        fragmentTransaction.replace(R.id.bargraph,secondFragment);
+        fragmentTransaction.replace(R.id.container,secondFragment);
         fragmentTransaction.commit();
     }
 
@@ -142,10 +142,6 @@ public class StatisticVisualisationFragment extends android.support.v4.app.Fragm
 
     }
 
-    public void displayToast(String text) {
-        Toast toast = Toast.makeText(getContext(), text, Toast.LENGTH_SHORT);
-        toast.show();
-    }
 }
 
 

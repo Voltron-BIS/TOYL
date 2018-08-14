@@ -10,15 +10,6 @@
         android:layout_alignParentTop="true"
         android:layout_marginBottom="60dp"
         android:layout_marginTop="0dp"></com.github.mikephil.charting.charts.HorizontalBarChart>
-    <TextView
-        android:id="@+id/firstname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="blah1"/>
-    <EditText
-        android:id="@+id/lastname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="blah2"/>
+
 
 </RelativeLayout>

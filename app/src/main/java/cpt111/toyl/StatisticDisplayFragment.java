@@ -7,40 +7,54 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 
 public class StatisticDisplayFragment extends android.support.v4.app.Fragment {
 
-    @Nullable
+    public StatisticDisplayFragment(){
+
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_statistic_display, container, false);
+        String firstName;
+        String lastName;
 
-        //gets bundle
-        //Bundle bundle = getArguments();
+        if (getArguments() != null) {
+            //gets bundle
+            Bundle bundle = getArguments();
 
-//temporarily creating bundle
-        //gets Text from editTexts
-        String first = "text1";
-        String last = "text2";
+            //extracts bundle content to strings
+            firstName = bundle.getString("FirstName");
+            lastName = bundle.getString("LastName");
 
-        //creates bundle to pass to next fragment
-        Bundle bundle = new Bundle();
-        bundle.putString("FirstName",first);
-        bundle.putString("LastName",last);
-//end of bundle creation see Visualisation fragment
+            //identifies textviews
+            TextView firstText = (TextView) rootView.findViewById(R.id.iCVal);
+            TextView lastText = (TextView) rootView.findViewById(R.id.sIVal);
 
-        //extracts bundle content to strings
-        String firstName = bundle.getString("FirstName");
-        String lastName = bundle.getString("LastName");
+            //sets text
+            firstText.setText(firstName);
+            lastText.setText(lastName);
 
-        //identifies textviews
-        TextView firstText = (TextView) rootView.findViewById(R.id.iCVal);
-        TextView lastText = (TextView) rootView.findViewById(R.id.sIVal);
-
-        //sets text
-        firstText.setText(firstName);
-        lastText.setText(lastName);
+        }
+        else{
+            displayToast("no args");
+        }
 
         return rootView;
     }
+
+    public void displayToast(String text) {
+        Toast toast = Toast.makeText(getContext(), text, Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
 }

@@ -15,10 +15,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
-public class StatisticWhiteboardFragment extends Fragment {
+
+
+
+
+public class StatisticWhiteboardFragment extends Fragment implements View.OnClickListener {
 
     private ViewPager mViewPager;
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -31,6 +34,8 @@ public class StatisticWhiteboardFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
     }
 
     @Override
@@ -60,6 +65,16 @@ public class StatisticWhiteboardFragment extends Fragment {
 
     }
 
+    @Override
+    public void onClick(View v) {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Fragment fragment = new StatisticDisplayFragment();
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.replace(R.id.container, fragment).commit();
+
+    }
+
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
@@ -84,6 +99,7 @@ public class StatisticWhiteboardFragment extends Fragment {
         public int getCount() {
             return 2;
         }
+
 
         @Override
         public CharSequence getPageTitle(int position) {
