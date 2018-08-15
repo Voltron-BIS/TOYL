@@ -1,5 +1,7 @@
 package cpt111.toyl;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,14 +11,21 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import cpt111.toyl.Tasks.TaskTrackerListFragment;
 
+import cpt111.toyl.Timer.AddTimer.TimerAddFragment;
 import cpt111.toyl.Timer.Dummy_TimerTempData;
 import cpt111.toyl.Timer.Home.TimerListFragment;
+import cpt111.toyl.database.entities.SimplerTimerEntity;
 
 public class MainActivity extends AppCompatActivity
 {
+
+	public static final String EXTRA_REPLY = "com.example.android.wordlistsql.REPLY";
+	public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
+
 
 	// TODO: temp data to simulate DB (timers), public to avoid cluttering this class with
     // methods as it will be moved from here

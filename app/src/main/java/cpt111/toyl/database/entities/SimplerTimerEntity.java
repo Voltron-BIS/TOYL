@@ -19,36 +19,33 @@ public class SimplerTimerEntity
 	
 	@ColumnInfo(name = "title")
 	private String title;
-	
-	@ColumnInfo(name = "description")
-	private String description;
-	
-	@ColumnInfo(name = "countdown_timer")
-	private boolean isCountdownTimer;
-	
+
+//	@ColumnInfo(name = "description")
+//	private String description;
+
+//	@ColumnInfo(name = "countdown_timer")
+//	private boolean isCountdownTimer;
+//
 	@ColumnInfo(name = "timer_length")
 	private long length;
 	
-	@ColumnInfo(name = "elapsed_time")
-	private long elapsed;
-	
-	@ColumnInfo(name = "repeat")
-	private int repeats;
-	
+	@ColumnInfo(name = "remaining_time")
+	private long remaining;
+
+//	@ColumnInfo(name = "repeat")
+//	private int repeats;
+
 	// This constructor is needed since the other constructor doesn't have all the database fields present, which is an error.
 	public SimplerTimerEntity()
 	{
 		// Hehe I do nothing, don't use me. :)
 	}
 	
-	public SimplerTimerEntity(String name, String description, boolean isCountdownTimer, long length, int repeats)
+	public SimplerTimerEntity(String name, long length)
 	{
 		this.title = name;
-		this.description = description;
-		this.isCountdownTimer = isCountdownTimer;
 		this.length = length;
-		elapsed = 0;
-		this.repeats = repeats;
+		remaining = length;
 	}
 	
 	@NonNull
@@ -82,26 +79,6 @@ public class SimplerTimerEntity
 		this.title = title;
 	}
 	
-	public String getDescription()
-	{
-		return description;
-	}
-	
-	public void setDescription(String description)
-	{
-		this.description = description;
-	}
-	
-	public boolean isCountdownTimer()
-	{
-		return isCountdownTimer;
-	}
-	
-	public void setCountdownTimer(boolean countdownTimer)
-	{
-		isCountdownTimer = countdownTimer;
-	}
-	
 	public long getLength()
 	{
 		return length;
@@ -111,24 +88,12 @@ public class SimplerTimerEntity
 	{
 		this.length = length;
 	}
-	
-	public long getElapsed()
-	{
-		return elapsed;
+
+	public long getRemaining() {
+		return remaining;
 	}
-	
-	public void setElapsed(long elapsed)
-	{
-		this.elapsed = elapsed;
-	}
-	
-	public int getRepeats()
-	{
-		return repeats;
-	}
-	
-	public void setRepeats(int repeats)
-	{
-		this.repeats = repeats;
+
+	public void setRemaining(long remaining) {
+		this.remaining = remaining;
 	}
 }

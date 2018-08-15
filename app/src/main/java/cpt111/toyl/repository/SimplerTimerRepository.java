@@ -15,14 +15,14 @@ public class SimplerTimerRepository
 	private SimpleTimerDOA simpleTimerDOA;
 	private LiveData<List<SimplerTimerEntity>> allSimpleTimerEntities;
 	
-	SimplerTimerRepository(Application application)
+	public SimplerTimerRepository(Application application)
 	{
 		ToylDatabase toylDatabase = ToylDatabase.getDbInstance(application);
 		simpleTimerDOA = toylDatabase.simpleTimerDOA();
 		allSimpleTimerEntities = simpleTimerDOA.getAllTimers();
 	}
 	
-	LiveData<List<SimplerTimerEntity>> getAllSimpleTimerEntities()
+	public LiveData<List<SimplerTimerEntity>> getAllSimpleTimerEntities()
 	{
 		return allSimpleTimerEntities;
 	}

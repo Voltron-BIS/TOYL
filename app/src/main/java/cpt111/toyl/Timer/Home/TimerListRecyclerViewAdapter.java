@@ -1,5 +1,6 @@
 package cpt111.toyl.Timer.Home;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import cpt111.toyl.Timer.Model.CompoundTimer;
 
 import cpt111.toyl.Timer.Model.SimpleTimer;
 import cpt111.toyl.Timer.ViewTimer.TimerViewFragment;
+import cpt111.toyl.database.entities.SimplerTimerEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,15 +29,22 @@ import java.util.concurrent.TimeUnit;
 // adapter type is the class created at the bottom of this file
 public class TimerListRecyclerViewAdapter extends RecyclerView.Adapter<TimerListRecyclerViewAdapter.ViewHolder> {
 
-    private ArrayList<CompoundTimer> listOfTimers;
-    private final OnListFragmentInteractionListener mListener;
+    private List<SimplerTimerEntity> listOfTimers;
+//    private final OnListFragmentInteractionListener mListener;
 
+    public TimerListRecyclerViewAdapter(List<SimplerTimerEntity> listOfTimers) {
 
-    public TimerListRecyclerViewAdapter(ArrayList<CompoundTimer> list, OnListFragmentInteractionListener listener) {
-        this.listOfTimers = list;
-        this.mListener = listener;
+        this.listOfTimers = listOfTimers;
+        System.out.println("SIZE IS " + listOfTimers.size());
+
     }
 
+//
+//    public TimerListRecyclerViewAdapter(ArrayList<CompoundTimer> list, OnListFragmentInteractionListener listener) {
+//        this.listOfTimers = list;
+//        this.mListener = listener;
+//    }
+//
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -46,50 +55,84 @@ public class TimerListRecyclerViewAdapter extends RecyclerView.Adapter<TimerList
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-        holder.timerName.setText(listOfTimers.get(position).getName());
+        System.out.println("This triggered");
 
-        // get subtimers/sets within compound timer
-        List<AbstractTimer> timers = listOfTimers.get(position).getListOfTimers();
-
-        long timerLength = 0;
-
-        for(int i = 0; i < timers.size(); ++i) {
-            timerLength += timers.get(i).getLength();
+        if (listOfTimers != null) {
+            SimplerTimerEntity current = listOfTimers.get(position);
+            holder.timerName.setText(current.getTitle());
+            holder.timerLength.setText(getDurationBreakdown(current.getLength()));
+        } else {
+            // covers the case of data not being ready yet
+            holder.timerName.setText("No Timer");
         }
 
-        // multiply by # of repeats in compound timer
-        timerLength *= listOfTimers.get(position).getRepeats();
-
-        holder.timerLength.setText(getDurationBreakdown(timerLength));
-
-
-        // on click listener to open view timer
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-
-                // Opening new fragment (SimpleTimer view)
-
-                Fragment myFragment = new TimerViewFragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("Position", position);
-
-
-                //bundle.putString("Name", listOfTimers.get(position).getName());
-                myFragment.setArguments(bundle);
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.container, myFragment).addToBackStack(null).commit();
-            }
-        });
-
-
     }
+
+    public void setTimers(List<SimplerTimerEntity> timers) {
+        listOfTimers = timers;
+        notifyDataSetChanged();
+    }
+
+    // getItemCount() is called many times, and when it is first called,
+    // listOfTimers has not been updated (means initially, it's null, and we can't return null).
 
     @Override
     public int getItemCount() {
-        return listOfTimers.size();
+        if(listOfTimers != null)
+            return listOfTimers.size();
+        else return 0;
     }
+
+
+
+//
+//    @Override
+//    public void onBindViewHolder(final ViewHolder holder, final int position) {
+//
+//        holder.timerName.setText(listOfTimers.get(position).getName());
+//
+//        // get subtimers/sets within compound timer
+//        List<AbstractTimer> timers = listOfTimers.get(position).getListOfTimers();
+//
+//        long timerLength = 0;
+//
+//        for(int i = 0; i < timers.size(); ++i) {
+//            timerLength += timers.get(i).getLength();
+//        }
+//
+//        // multiply by # of repeats in compound timer
+//        timerLength *= listOfTimers.get(position).getRepeats();
+//
+//        holder.timerLength.setText(getDurationBreakdown(timerLength));
+//
+//
+//        // on click listener to open view timer
+//        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+//
+//                // Opening new fragment (SimpleTimer view)
+//
+//                Fragment myFragment = new TimerViewFragment();
+//                Bundle bundle = new Bundle();
+//                bundle.putInt("Position", position);
+//
+//
+//                //bundle.putString("Name", listOfTimers.get(position).getName());
+//                myFragment.setArguments(bundle);
+//                activity.getSupportFragmentManager().beginTransaction().replace(R.id.container, myFragment).addToBackStack(null).commit();
+//            }
+//        });
+//
+//
+//    }
+//
+//    @Override
+//    public int getItemCount() {
+//        return listOfTimers.size();
+//    }
 
 
     // where we set up the view for the "list"
